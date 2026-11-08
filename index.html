@@ -8,11 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0; padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
     :root {
       --rose:    #e8a0a8;
@@ -21,18 +17,13 @@
       --text-lt: #7a5260;
     }
 
-    html, body {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-      background: #f0e6ea;
-      font-family: 'DM Sans', sans-serif;
-    }
+    html, body { height: 100%; width: 100%; overflow: hidden; background: #f0e6ea; font-family: 'DM Sans', sans-serif; }
 
-    /* ─── SCROLL DRIVER ─── */
+    /* ══════════════════════════════
+       SCROLL DRIVER (invisible, z:999)
+    ══════════════════════════════ */
     #scroll-driver {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
       -webkit-overflow-scrolling: touch;
@@ -41,388 +32,175 @@
       z-index: 999;
     }
     #scroll-driver::-webkit-scrollbar { display: none; }
+    #scroll-track { height: calc(10 * 100dvh); pointer-events: none; }
+    .scroll-section { height: 100dvh; scroll-snap-align: start; scroll-snap-stop: always; }
 
-    #scroll-track {
-      height: calc(10 * 100dvh); /* 10 cards */
-      pointer-events: none;
-    }
-
-    .scroll-section {
-      height: 100dvh;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
-
-    /* ─── CARD STAGE ─── */
+    /* ══════════════════════════════
+       CARD STAGE (z:1)
+    ══════════════════════════════ */
     #card-stage {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 1;
+      position: fixed; inset: 0;
+      display: flex; align-items: flex-start; justify-content: center;
+      overflow: hidden; pointer-events: none; z-index: 1;
     }
 
-    /* ─── CARDS ─── */
     .card {
-      position: absolute;
-      top: 0;
-      width: min(390px, 100vw);
-      height: 100dvh;
+      position: absolute; top: 0;
+      width: min(390px, 100vw); height: 100dvh;
       border-radius: 28px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 32px;
-      text-align: center;
-      overflow: hidden;
-      will-change: transform, opacity;
-      transform-origin: center top;
-      box-shadow:
-        0 24px 64px rgba(199, 125, 138, 0.22),
-        0 4px 16px rgba(199, 125, 138, 0.10);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 48px 32px; text-align: center; overflow: hidden;
+      will-change: transform, opacity; transform-origin: center top;
+      box-shadow: 0 24px 64px rgba(199,125,138,.22), 0 4px 16px rgba(199,125,138,.10);
     }
 
-    /* Gradients */
-    .card-1  { background: linear-gradient(145deg, #fce4ec 0%, #f8bbd0 40%, #f3e5f5 100%); }
-    .card-2  { background: linear-gradient(145deg, #fdf6f0 0%, #fce4d6 50%, #f9d4e0 100%); }
-    .card-3  { background: linear-gradient(150deg, #e8f5e9 0%, #d4e5d0 50%, #fce4ec 100%); }
-    .card-4  { background: linear-gradient(140deg, #f3e5f5 0%, #e8d5f0 50%, #fce4ec 100%); }
-    .card-5  { background: linear-gradient(145deg, #fff8e1 0%, #fce4d6 50%, #f9d4e0 100%); }
-    .card-6  { background: linear-gradient(145deg, #fce4ec 0%, #fdf6f0 50%, #e8f5e9 100%); }
-    .card-7  { background: linear-gradient(145deg, #f8bbd0 0%, #f3e5f5 50%, #fff9c4 100%); }
-    .card-8  { background: linear-gradient(145deg, #fff8e1 0%, #ffe0c8 40%, #fce4ec 100%); } /* NGO warm amber */
-    .card-9  { background: linear-gradient(145deg, #fdf6f0 0%, #fce8f0 60%, #f5f0fd 100%); } /* Scratch card */
-    .card-10 { background: linear-gradient(145deg, #e8d5f0 0%, #fce4ec 50%, #fdf6f0 100%); } /* Finale */
+    .card-1  { background: linear-gradient(145deg,#fce4ec 0%,#f8bbd0 40%,#f3e5f5 100%); }
+    .card-2  { background: linear-gradient(145deg,#fdf6f0 0%,#fce4d6 50%,#f9d4e0 100%); }
+    .card-3  { background: linear-gradient(150deg,#e8f5e9 0%,#d4e5d0 50%,#fce4ec 100%); }
+    .card-4  { background: linear-gradient(140deg,#f3e5f5 0%,#e8d5f0 50%,#fce4ec 100%); }
+    .card-5  { background: linear-gradient(145deg,#fff8e1 0%,#fce4d6 50%,#f9d4e0 100%); }
+    .card-6  { background: linear-gradient(145deg,#fce4ec 0%,#fdf6f0 50%,#e8f5e9 100%); }
+    .card-7  { background: linear-gradient(145deg,#f8bbd0 0%,#f3e5f5 50%,#fff9c4 100%); }
+    .card-8  { background: linear-gradient(145deg,#fff8e1 0%,#ffe0c8 40%,#fce4ec 100%); }
+    /* Cards 9 & 10 are covered by the overlay or final card */
+    .card-9  { background: linear-gradient(145deg,#fdf6f0 0%,#fce8f0 60%,#f5f0fd 100%); }
+    .card-10 { background: linear-gradient(145deg,#e8d5f0 0%,#fce4ec 50%,#fdf6f0 100%); }
 
-    /* ─── DECORATIVE ─── */
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(44px);
-      opacity: 0.32;
-      pointer-events: none;
-    }
+    /* Blobs */
+    .blob { position: absolute; border-radius: 50%; filter: blur(44px); opacity: .32; pointer-events: none; }
     .blob-a { width: 220px; height: 220px; background: #f48fb1; top: -60px; right: -60px; }
     .blob-b { width: 180px; height: 180px; background: #ce93d8; bottom: -50px; left: -50px; }
+    .blob-gold-a { background: #f9b88a !important; }
+    .blob-gold-b { background: #f48fb1 !important; }
 
-    /* ─── CARD 1 — name reveal ─── */
-    .tag-line {
-      font-size: 12px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--mauve);
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.4s forwards;
-    }
-    .hero-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(64px, 18vw, 86px);
-      font-weight: 300;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1;
-      letter-spacing: -2px;
-      opacity: 0;
-      animation: nameReveal 1.2s 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
-    }
-    .hero-thirty {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(100px, 28vw, 140px);
-      font-weight: 600;
-      color: transparent;
-      -webkit-text-stroke: 2px var(--rose);
-      line-height: 1;
-      margin-top: -8px;
-      opacity: 0;
-      animation: fadeUp 0.9s 1.1s forwards;
-    }
-    .hero-sub {
-      font-size: 13px;
-      color: var(--text-lt);
-      font-weight: 300;
-      margin-top: 24px;
-      letter-spacing: 1px;
-      opacity: 0;
-      animation: fadeUp 0.7s 1.6s forwards;
-    }
-    .floral-row {
-      font-size: 24px;
-      margin: 14px 0;
-      opacity: 0;
-      animation: fadeUp 0.6s 1.3s forwards;
-    }
+    /* Card 1 */
+    .tag-line { font-size:12px; letter-spacing:4px; text-transform:uppercase; color:var(--mauve); margin-bottom:20px; opacity:0; animation:fadeUp .8s .4s forwards; }
+    .hero-name { font-family:'Cormorant Garamond',serif; font-size:clamp(64px,18vw,86px); font-weight:300; font-style:italic; color:var(--text); line-height:1; letter-spacing:-2px; opacity:0; animation:nameReveal 1.2s .7s cubic-bezier(.16,1,.3,1) forwards; }
+    .hero-thirty { font-family:'Cormorant Garamond',serif; font-size:clamp(100px,28vw,140px); font-weight:600; color:transparent; -webkit-text-stroke:2px var(--rose); line-height:1; margin-top:-8px; opacity:0; animation:fadeUp .9s 1.1s forwards; }
+    .hero-sub { font-size:13px; color:var(--text-lt); font-weight:300; margin-top:24px; letter-spacing:1px; opacity:0; animation:fadeUp .7s 1.6s forwards; }
+    .floral-row { font-size:24px; margin:14px 0; opacity:0; animation:fadeUp .6s 1.3s forwards; }
 
-    /* ─── STANDARD CARD BODY ─── */
-    .card-emoji {
-      font-size: 52px;
-      margin-bottom: 20px;
-      animation: floatEmoji 3s ease-in-out infinite;
+    /* Standard body */
+    .card-emoji { font-size:52px; margin-bottom:20px; animation:floatEmoji 3s ease-in-out infinite; }
+    .card-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,7vw,36px); font-weight:400; font-style:italic; color:var(--text); line-height:1.25; margin-bottom:20px; }
+    .card-body { font-size:15px; line-height:1.8; color:var(--text-lt); font-weight:300; max-width:300px; }
+    .card-divider { width:48px; height:2px; background:linear-gradient(90deg,var(--rose),var(--mauve)); border-radius:2px; margin:20px auto; }
+    .card-quote { font-family:'Cormorant Garamond',serif; font-size:clamp(18px,5vw,22px); font-style:italic; color:var(--mauve); line-height:1.6; margin-top:12px; }
+
+    /* Card 8 — NGO */
+    .ngo-intro { font-size:12px; letter-spacing:3px; text-transform:uppercase; color:#b07a50; margin-bottom:10px; }
+    .ngo-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,8vw,38px); font-weight:400; font-style:italic; color:var(--text); line-height:1.2; margin-bottom:20px; }
+    .ngo-body { font-size:15px; line-height:1.9; color:var(--text-lt); font-weight:300; max-width:310px; }
+    .ngo-hint { margin-top:28px; font-size:12px; color:#b07a50; letter-spacing:2px; display:flex; align-items:center; gap:8px; }
+    .ngo-hint::before,.ngo-hint::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,transparent,#c99a7a,transparent); }
+
+    /* Card 9 — scratch placeholder (mostly hidden by overlay) */
+    .scratch-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; opacity:.4; }
+
+    /* Card 10 — finale with big photo */
+    .heart-pulse { font-size:48px; animation:heartbeat 1.5s ease-in-out infinite; display:block; margin-bottom:16px; }
+    .photo2-wrap { width:100%; max-width:320px; height:min(48vh,360px); border-radius:18px; overflow:hidden; box-shadow:0 14px 40px rgba(199,125,138,.25); margin-bottom:20px; flex-shrink:0; }
+    .photo2-wrap img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+    .final-name { font-family:'Cormorant Garamond',serif; font-size:clamp(34px,9vw,46px); font-style:italic; font-weight:300; color:var(--text); line-height:1.1; }
+    .final-msg { font-size:14px; color:var(--text-lt); font-weight:300; max-width:280px; line-height:1.85; margin-top:12px; }
+
+    /* ══════════════════════════════
+       SCRATCH OVERLAY  (z:1000)
+       Sits above scroll-driver (z:999).
+       pointer-events:none so scroll
+       driver still gets swipes outside
+       the photo. Canvas & buttons are
+       explicitly pointer-events:auto.
+    ══════════════════════════════ */
+    #scratch-overlay {
+      position: fixed; inset: 0;
+      z-index: 1000;
+      pointer-events: none;        /* pass-through by default */
+      display: flex; align-items: center; justify-content: center;
+      /* background matches card-9 gradient */
+      background: linear-gradient(145deg,#fdf6f0 0%,#fce8f0 60%,#f5f0fd 100%);
+      opacity: 0;
+      transition: opacity .4s ease;
     }
-    .card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 7vw, 36px);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.25;
-      margin-bottom: 20px;
-    }
-    .card-body {
-      font-size: 15px;
-      line-height: 1.8;
-      color: var(--text-lt);
-      font-weight: 300;
-      max-width: 300px;
-    }
-    .card-divider {
-      width: 48px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--rose), var(--mauve));
-      border-radius: 2px;
-      margin: 20px auto;
-    }
-    .card-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(18px, 5vw, 22px);
-      font-style: italic;
-      color: var(--mauve);
-      line-height: 1.6;
-      margin-top: 12px;
+    #scratch-overlay.visible { opacity: 1; }
+
+    #scratch-inner {
+      width: min(390px, 100vw); height: 100dvh;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 52px 20px 36px;
+      pointer-events: none; /* children opt-in individually */
     }
 
-    /* ─── CARD 8: NGO PERSONAL MESSAGE ─── */
-    .ngo-intro {
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #b07a50;
-      margin-bottom: 10px;
-    }
-    .ngo-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 8vw, 38px);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.2;
-      margin-bottom: 24px;
-    }
-    .ngo-body {
-      font-size: 15px;
-      line-height: 1.9;
-      color: var(--text-lt);
-      font-weight: 300;
-      max-width: 310px;
-    }
-    .ngo-hint {
-      margin-top: 28px;
-      font-size: 13px;
-      color: #b07a50;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .ngo-hint::before, .ngo-hint::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #c99a7a, transparent);
-    }
-    .ngo-blob-a { background: #f9b88a !important; }
-    .ngo-blob-b { background: #f48fb1 !important; }
+    .s-label { font-size:11px; letter-spacing:3.5px; text-transform:uppercase; color:var(--mauve); margin-bottom:8px; }
+    .s-title { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,7vw,34px); font-style:italic; color:var(--text); line-height:1.2; text-align:center; margin-bottom:20px; }
 
-    /* ─── CARD 9: SCRATCH REVEAL ─── */
-    .scratch-card-top {
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--mauve);
-      margin-bottom: 10px;
-    }
-    .scratch-card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(24px, 7vw, 32px);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.25;
-      margin-bottom: 20px;
-    }
-
-    /* The photo + canvas container */
-    .scratch-wrap {
+    /* Photo + canvas container — FILLS remaining space */
+    #scratch-photo-wrap {
       position: relative;
       width: 100%;
-      max-width: 310px;
-      border-radius: 18px;
+      flex: 1;                     /* fill available height */
+      max-height: 68vh;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 12px 36px rgba(199,125,138,0.25);
-      flex-shrink: 0;
+      box-shadow: 0 16px 48px rgba(199,125,138,.28);
     }
-    .scratch-photo {
-      display: block;
-      width: 100%;
-      height: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      object-position: center top;
+    #scratch-photo-wrap img {
+      display: block; width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      user-select: none; -webkit-user-drag: none;
     }
-    #scratch-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+    #s-canvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
       cursor: crosshair;
       touch-action: none;
-      pointer-events: none; /* JS controls this */
+      pointer-events: auto;        /* KEY: canvas catches touch directly */
+      transition: opacity .9s ease;
     }
 
-    /* Hint below scratch */
-    .scratch-hint {
-      margin-top: 14px;
-      font-size: 12px;
-      color: var(--mauve);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.7;
-      transition: opacity 0.5s;
-    }
-    .scratch-hint.hidden { opacity: 0; }
+    /* Below the photo */
+    .s-bottom { margin-top:14px; display:flex; flex-direction:column; align-items:center; gap:10px; }
 
-    /* Continue prompt after reveal */
-    .scratch-continue {
-      margin-top: 10px;
-      font-size: 13px;
-      color: var(--mauve);
-      letter-spacing: 1px;
-      opacity: 0;
-      transition: opacity 0.8s 0.5s;
-      pointer-events: none;
-    }
-    .scratch-continue.show { opacity: 1; }
+    #s-hint { font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--mauve); opacity:.75; transition:opacity .4s; }
+    #s-hint.gone { opacity:0; }
 
-    /* ─── CARD 10: FINALE ─── */
-    .heart-pulse {
-      font-size: 54px;
-      animation: heartbeat 1.5s ease-in-out infinite;
-      display: block;
-      margin-bottom: 16px;
-    }
+    #s-continue { font-size:13px; color:var(--mauve); letter-spacing:1px; opacity:0; transition:opacity .8s .3s; }
+    #s-continue.show { opacity:1; }
 
-    /* Polaroid photo */
-    .polaroid {
-      background: white;
-      padding: 7px 7px 20px;
-      border-radius: 3px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.13), 0 2px 6px rgba(0,0,0,0.07);
-      transform: rotate(-2.5deg);
-      width: 140px;
-      margin-bottom: 20px;
-      flex-shrink: 0;
+    /* Skip/reveal button — pointer-events: auto */
+    #s-reveal-btn {
+      pointer-events: auto;
+      border: none; background: none;
+      font-family:'DM Sans',sans-serif; font-size:11px;
+      letter-spacing:2px; text-transform:uppercase;
+      color:var(--mauve); opacity:.45; cursor:pointer;
+      padding:4px 0;
+      transition: opacity .2s;
     }
-    .polaroid img {
-      width: 100%;
-      display: block;
-      border-radius: 1px;
-    }
+    #s-reveal-btn:active { opacity:.8; }
 
-    .final-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(38px, 10vw, 54px);
-      font-style: italic;
-      font-weight: 300;
-      color: var(--text);
-      line-height: 1.1;
-    }
-    .final-msg {
-      font-size: 14px;
-      color: var(--text-lt);
-      font-weight: 300;
-      max-width: 280px;
-      line-height: 1.85;
-      margin-top: 14px;
-    }
+    /* ══════════════════════════════
+       DOTS + HINT
+    ══════════════════════════════ */
+    #dots { position:fixed; right:18px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:10px; z-index:1001; pointer-events:none; }
+    .dot { width:5px; height:5px; border-radius:50%; background:var(--rose); opacity:.3; transition:opacity .3s,height .3s,border-radius .3s; }
+    .dot.active { opacity:1; height:18px; border-radius:3px; background:var(--mauve); }
 
-    /* ─── PROGRESS DOTS ─── */
-    #dots {
-      position: fixed;
-      right: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 1000;
-      pointer-events: none;
-    }
-    .dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--rose);
-      opacity: 0.3;
-      transition: opacity 0.3s, transform 0.3s, height 0.3s, border-radius 0.3s;
-    }
-    .dot.active {
-      opacity: 1;
-      height: 18px;
-      border-radius: 3px;
-      background: var(--mauve);
-    }
+    #scroll-hint { position:fixed; bottom:32px; left:50%; transform:translateX(-50%); font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--mauve); opacity:0; z-index:1000; pointer-events:none; animation:hintPulse 2.5s 2s 3 forwards; }
 
-    /* ─── SCROLL HINT ─── */
-    #scroll-hint {
-      position: fixed;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 11px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--mauve);
-      opacity: 0;
-      z-index: 1000;
-      pointer-events: none;
-      animation: hintPulse 2.5s 2s 3 forwards;
-    }
-
-    /* ─── KEYFRAMES ─── */
-    @keyframes nameReveal {
-      from { opacity: 0; transform: translateY(28px) scale(0.92); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes floatEmoji {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-10px); }
-    }
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      14%       { transform: scale(1.2); }
-      28%       { transform: scale(1); }
-      42%       { transform: scale(1.14); }
-      56%       { transform: scale(1); }
-    }
-    @keyframes hintPulse {
-      0%   { opacity: 0; transform: translateX(-50%) translateY(4px); }
-      20%  { opacity: 0.8; transform: translateX(-50%) translateY(0); }
-      80%  { opacity: 0.8; }
-      100% { opacity: 0; }
-    }
+    /* ══════════════════════════════
+       KEYFRAMES
+    ══════════════════════════════ */
+    @keyframes nameReveal { from{opacity:0;transform:translateY(28px) scale(.92)} to{opacity:1;transform:translateY(0) scale(1)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes floatEmoji { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @keyframes heartbeat { 0%,100%{transform:scale(1)} 14%{transform:scale(1.2)} 28%{transform:scale(1)} 42%{transform:scale(1.14)} 56%{transform:scale(1)} }
+    @keyframes hintPulse { 0%{opacity:0;transform:translateX(-50%) translateY(4px)} 20%{opacity:.8;transform:translateX(-50%) translateY(0)} 80%{opacity:.8} 100%{opacity:0} }
   </style>
 </head>
 <body>
 
-<!-- ─── SCROLL DRIVER ─── -->
+<!-- ══ SCROLL DRIVER ══ -->
 <div id="scroll-driver">
   <div id="scroll-track">
     <div class="scroll-section"></div>
@@ -438,13 +216,12 @@
   </div>
 </div>
 
-<!-- ─── CARD STAGE ─── -->
+<!-- ══ CARD STAGE ══ -->
 <div id="card-stage">
 
-  <!-- CARD 1: Name Reveal -->
+  <!-- CARD 1 -->
   <div class="card card-1" data-index="0">
-    <div class="blob blob-a"></div>
-    <div class="blob blob-b"></div>
+    <div class="blob blob-a"></div><div class="blob blob-b"></div>
     <p class="tag-line">A little something for</p>
     <h1 class="hero-name">Inayat</h1>
     <div class="hero-thirty">30</div>
@@ -457,10 +234,7 @@
     <div class="card-emoji">✨</div>
     <h2 class="card-title">Thirty is not just a number</h2>
     <div class="card-divider"></div>
-    <p class="card-body">
-      It's a whole chapter. A decade of becoming. A collection of late nights,
-      brave decisions, lessons hard-won — and so much beauty along the way.
-    </p>
+    <p class="card-body">It's a whole chapter. A decade of becoming. A collection of late nights, brave decisions, lessons hard-won — and so much beauty along the way.</p>
     <p class="card-quote">"She turned her can'ts into cans,<br/>and her dreams into plans."</p>
   </div>
 
@@ -469,11 +243,7 @@
     <div class="card-emoji">🌿</div>
     <h2 class="card-title">You have grown so beautifully</h2>
     <div class="card-divider"></div>
-    <p class="card-body">
-      Like a garden in full bloom, you've grown through seasons of change —
-      softening in the right places, strengthening in the ones that matter most.
-      Watching you become who you are has been a privilege.
-    </p>
+    <p class="card-body">Like a garden in full bloom, you've grown through seasons of change — softening in the right places, strengthening in the ones that matter most. Watching you become who you are has been a privilege.</p>
   </div>
 
   <!-- CARD 4 -->
@@ -481,12 +251,7 @@
     <div class="card-emoji">💫</div>
     <h2 class="card-title">The things I love most about you</h2>
     <div class="card-divider"></div>
-    <p class="card-body">
-      Your laugh that fills up a whole room.<br/>
-      The way you care — deeply, fully, without keeping score.<br/>
-      Your strength that you wear so lightly.<br/>
-      And the rare kind of magic you bring<br/>just by being you.
-    </p>
+    <p class="card-body">Your laugh that fills up a whole room.<br/>The way you care — deeply, fully, without keeping score.<br/>Your strength that you wear so lightly.<br/>And the rare kind of magic you bring<br/>just by being you.</p>
   </div>
 
   <!-- CARD 5 -->
@@ -494,11 +259,7 @@
     <div class="card-emoji">🌅</div>
     <h2 class="card-title">Here's to your next chapter</h2>
     <div class="card-divider"></div>
-    <p class="card-body">
-      May your 30s be filled with adventures that take your breath away,
-      love that feels like home, and mornings that make you excited
-      to be alive. You deserve every beautiful thing the universe has to offer.
-    </p>
+    <p class="card-body">May your 30s be filled with adventures that take your breath away, love that feels like home, and mornings that make you excited to be alive. You deserve every beautiful thing the universe has to offer.</p>
   </div>
 
   <!-- CARD 6 -->
@@ -506,13 +267,7 @@
     <div class="card-emoji">🌸</div>
     <h2 class="card-title">A little reminder</h2>
     <div class="card-divider"></div>
-    <p class="card-body">
-      You are allowed to take up space.<br/>
-      You are allowed to dream bigger.<br/>
-      You are allowed to rest.<br/>
-      And you are <em>always</em> allowed to choose yourself first.<br/><br/>
-      This decade is <strong>yours</strong>.
-    </p>
+    <p class="card-body">You are allowed to take up space.<br/>You are allowed to dream bigger.<br/>You are allowed to rest.<br/>And you are <em>always</em> allowed to choose yourself first.<br/><br/>This decade is <strong>yours</strong>.</p>
   </div>
 
   <!-- CARD 7 -->
@@ -520,27 +275,21 @@
     <div class="card-emoji">🎂</div>
     <h2 class="card-title">On this very special day</h2>
     <div class="card-divider"></div>
-    <p class="card-body">
-      I hope you feel seen, celebrated, and completely surrounded
-      by love. I hope you eat the cake, dance a little, and let
-      yourself be fully, joyfully present.
-    </p>
+    <p class="card-body">I hope you feel seen, celebrated, and completely surrounded by love. I hope you eat the cake, dance a little, and let yourself be fully, joyfully present.</p>
     <p class="card-quote">You only turn 30 once.<br/>Make it legendary. 🥂</p>
   </div>
 
-  <!-- CARD 8: Personal NGO Message -->
+  <!-- CARD 8 — NGO Personal Message -->
   <div class="card card-8" data-index="7">
-    <div class="blob blob-a ngo-blob-a"></div>
-    <div class="blob blob-b ngo-blob-b"></div>
+    <div class="blob blob-a blob-gold-a"></div><div class="blob blob-b blob-gold-b"></div>
     <p class="ngo-intro">but first —</p>
     <h2 class="ngo-title">I did something a little<br/>different this year</h2>
     <div class="card-divider"></div>
     <p class="ngo-body">
       I've always wanted to celebrate someone
-      by giving a moment of joy to people
-      who rarely get one.<br/><br/>
+      by giving a moment of joy to people who rarely get one.<br/><br/>
       Your birthday felt like the perfect reason to finally do it.<br/><br/>
-      I found an NGO. I went to a brick-kiln colony.
+      I found an NGO. Went to a brick-kiln colony.
       And we celebrated <em>your</em> birthday
       with a group of kids who had never heard your name —
       but smiled for you like they'd known you forever.<br/><br/>
@@ -549,347 +298,282 @@
     <div class="ngo-hint">scratch the next card</div>
   </div>
 
-  <!-- CARD 9: Scratch to Reveal -->
-  <div class="card card-9" data-index="8" id="scratch-card">
-    <p class="scratch-card-top">their gift to you</p>
-    <h2 class="scratch-card-title">Scratch to reveal<br/>their smiles 🌸</h2>
-
-    <div class="scratch-wrap" id="scratch-wrap">
-      <img
-        src="./img/photo1.jpg"
-        alt="Children celebrating Inayat's birthday"
-        class="scratch-photo"
-        id="photo1"
-        draggable="false"
-      />
-      <canvas id="scratch-canvas"></canvas>
+  <!-- CARD 9 — Scratch placeholder (overlay sits on top) -->
+  <div class="card card-9" data-index="8">
+    <div class="scratch-placeholder">
+      <div style="font-size:40px">🌸</div>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--text)">Their gift to you</p>
     </div>
-
-    <p class="scratch-hint" id="scratch-hint">☆ &nbsp; use your finger &nbsp; ☆</p>
-    <p class="scratch-continue" id="scratch-continue">↓ &nbsp; scroll to continue</p>
   </div>
 
-  <!-- CARD 10: Finale with second photo -->
+  <!-- CARD 10 — Finale with large photo 2 -->
   <div class="card card-10" data-index="9">
     <span class="heart-pulse">💖</span>
-
-    <div class="polaroid">
+    <div class="photo2-wrap">
       <img src="./img/photo2.jpg" alt="Kids eating birthday cake" draggable="false" />
     </div>
-
-    <div class="final-name">Happy 30th,<br/>Inayat</div>
+    <div class="final-name">Happy 30th, Inayat</div>
     <div class="card-divider"></div>
     <p class="final-msg">
-      Those smiles are real. That joy was for you.
-      You inspired a small act of kindness just by existing —
+      Those smiles are real. That joy was for you.<br/>
+      You inspired a small act of kindness just by existing —<br/>
       and that, to me, is the most <em>you</em> thing in the world.<br/><br/>
-      Here's to 30 more years of being exactly that. 🌸
+      Here's to 30 more years of exactly that. 🌸
     </p>
   </div>
 
 </div>
 
-<!-- Progress dots -->
-<div id="dots"></div>
+<!-- ══ SCRATCH OVERLAY (z:1000, above scroll-driver) ══ -->
+<div id="scratch-overlay">
+  <div id="scratch-inner">
+    <p class="s-label">their gift to you 🌸</p>
+    <h2 class="s-title">Scratch to see<br/>what they did for you</h2>
 
-<!-- Scroll hint -->
+    <div id="scratch-photo-wrap">
+      <img src="./img/photo1.jpg" id="photo1-img" alt="Children celebrating Inayat's birthday" draggable="false" />
+      <canvas id="s-canvas"></canvas>
+    </div>
+
+    <div class="s-bottom">
+      <p id="s-hint">☆ &nbsp; use your finger to scratch &nbsp; ☆</p>
+      <p id="s-continue">↓ &nbsp; scroll to continue</p>
+      <button id="s-reveal-btn">skip — reveal all</button>
+    </div>
+  </div>
+</div>
+
+<!-- Dots + scroll hint -->
+<div id="dots"></div>
 <div id="scroll-hint">↓ &nbsp; scroll</div>
 
 <script>
-  /* ═══════════════════════════════════════════
-     SCROLL-DRIVEN CARD STACK ENGINE
-  ═══════════════════════════════════════════ */
+/* ══════════════════════════════════════
+   SCROLL STACK ENGINE
+══════════════════════════════════════ */
+const driver  = document.getElementById('scroll-driver');
+const cards   = [...document.querySelectorAll('.card')];
+const dotsEl  = document.getElementById('dots');
+const overlay = document.getElementById('scratch-overlay');
+const TOTAL   = cards.length; // 10
+const PEEK_1 = 56, PEEK_2 = 88, PEEK_3 = 112;
 
-  const driver  = document.getElementById('scroll-driver');
-  const cards   = [...document.querySelectorAll('.card')];
-  const dotsEl  = document.getElementById('dots');
-  const TOTAL   = cards.length; // 10
+// Build dots
+cards.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  dotsEl.appendChild(d);
+});
+const allDots = () => [...dotsEl.querySelectorAll('.dot')];
 
-  // Peek amounts for stacked cards
-  const PEEK_1 = 56, PEEK_2 = 88, PEEK_3 = 112;
+function render() {
+  const vh      = window.innerHeight;
+  const st      = driver.scrollTop;
+  const rawIdx  = st / vh;
+  const curIdx  = Math.min(Math.floor(rawIdx), TOTAL - 1);
+  const progress = rawIdx - Math.floor(rawIdx);
 
-  /* ─── Build dots ─── */
-  cards.forEach((_, i) => {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-    dotsEl.appendChild(d);
-  });
-  function allDots() { return [...dotsEl.querySelectorAll('.dot')]; }
+  cards.forEach((card, i) => {
+    const off = i - curIdx;
+    let ty, scale, opacity, zIndex;
 
-  /* ─── Core render ─── */
-  function render() {
-    const vh       = window.innerHeight;
-    const st       = driver.scrollTop;
-    const rawIdx   = st / vh;
-    const curIdx   = Math.min(Math.floor(rawIdx), TOTAL - 1);
-    const progress = rawIdx - Math.floor(rawIdx);
+    if (off < 0)      { ty='-100%'; scale=.96; opacity=0; zIndex=1; }
+    else if (off===0) { ty=`-${progress*100}%`; scale=1-progress*.04; opacity=progress>.75?1-(progress-.75)*4:1; zIndex=20; }
+    else if (off===1) { ty=`${PEEK_1*(1-progress)}px`; scale=.95+.05*progress; opacity=.65+.35*progress; zIndex=15; }
+    else if (off===2) { const s=PEEK_2-(PEEK_2-PEEK_1)*progress; ty=`${s}px`; scale=.90+.05*progress; opacity=.35+.30*progress; zIndex=10; }
+    else if (off===3) { const s=PEEK_3-(PEEK_3-PEEK_2)*progress; ty=`${s}px`; scale=.86+.04*progress; opacity=.15+.20*progress; zIndex=5; }
+    else              { ty='110%'; scale=.82; opacity=0; zIndex=1; }
 
-    cards.forEach((card, i) => {
-      const offset = i - curIdx;
-      let ty, scale, opacity, zIndex;
-
-      if (offset < 0) {
-        ty = '-100%'; scale = 0.96; opacity = 0; zIndex = 1;
-      } else if (offset === 0) {
-        ty      = `-${progress * 100}%`;
-        scale   = 1 - progress * 0.04;
-        opacity = progress > 0.75 ? 1 - (progress - 0.75) * 4 : 1;
-        zIndex  = 20;
-      } else if (offset === 1) {
-        ty      = `${PEEK_1 * (1 - progress)}px`;
-        scale   = 0.95 + 0.05 * progress;
-        opacity = 0.65 + 0.35 * progress;
-        zIndex  = 15;
-      } else if (offset === 2) {
-        const shift = PEEK_2 - (PEEK_2 - PEEK_1) * progress;
-        ty      = `${shift}px`;
-        scale   = 0.90 + 0.05 * progress;
-        opacity = 0.35 + 0.30 * progress;
-        zIndex  = 10;
-      } else if (offset === 3) {
-        const shift = PEEK_3 - (PEEK_3 - PEEK_2) * progress;
-        ty      = `${shift}px`;
-        scale   = 0.86 + 0.04 * progress;
-        opacity = 0.15 + 0.20 * progress;
-        zIndex  = 5;
-      } else {
-        ty = '110%'; scale = 0.82; opacity = 0; zIndex = 1;
-      }
-
-      card.style.transform = `translateY(${ty}) scale(${scale})`;
-      card.style.opacity    = opacity;
-      card.style.zIndex     = zIndex;
-    });
-
-    // Update dots
-    const nearestIdx = Math.round(rawIdx);
-    allDots().forEach((d, i) => {
-      d.className = 'dot' + (i === nearestIdx ? ' active' : '');
-    });
-
-    // Lazy-init scratch canvas when approaching that card
-    if (!scratchInited && nearestIdx >= SCRATCH_IDX - 1) {
-      scratchInited = true;
-      setTimeout(initScratch, 150);
-    }
-  }
-
-  driver.addEventListener('scroll', render, { passive: true });
-  render();
-
-  /* Keyboard nav */
-  window.addEventListener('keydown', e => {
-    const vh = window.innerHeight;
-    if (e.key === 'ArrowDown' || e.key === ' ') {
-      driver.scrollBy({ top: vh, behavior: 'smooth' });
-      e.preventDefault();
-    }
-    if (e.key === 'ArrowUp') {
-      driver.scrollBy({ top: -vh, behavior: 'smooth' });
-      e.preventDefault();
-    }
+    card.style.transform = `translateY(${ty}) scale(${scale})`;
+    card.style.opacity   = opacity;
+    card.style.zIndex    = zIndex;
   });
 
+  // Dots
+  const nearest = Math.round(rawIdx);
+  allDots().forEach((d, i) => d.className = 'dot'+(i===nearest?' active':''));
 
-  /* ═══════════════════════════════════════════
-     SCRATCH MECHANIC
-  ═══════════════════════════════════════════ */
-
-  const SCRATCH_IDX    = 8; // 0-based index of scratch card
-  const scratchCanvas  = document.getElementById('scratch-canvas');
-  const scratchCtx     = scratchCanvas.getContext('2d');
-  const scratchHint    = document.getElementById('scratch-hint');
-  const scratchContinue = document.getElementById('scratch-continue');
-
-  let scratchInited  = false;
-  let scratchComplete = false;
-  let scratchDPR     = 1;
-
-  /* Tracks last touch/mouse pos for smooth line drawing */
-  let lastX = null, lastY = null;
-  let isMouseDown = false;
-
-  /* ─── Init: paint the scratch overlay onto the canvas ─── */
-  function initScratch() {
-    const photo = document.getElementById('photo1');
-    if (photo.complete && photo.naturalWidth > 0) {
-      paintScratch();
-    } else {
-      photo.onload = paintScratch;
+  // Show/hide scratch overlay
+  if (nearest === SCRATCH_IDX && !scratchComplete) {
+    if (!overlay.classList.contains('visible')) {
+      overlay.classList.add('visible');
+      if (!scratchInited) { scratchInited = true; setTimeout(initScratch, 80); }
     }
+  } else if (scratchComplete || nearest !== SCRATCH_IDX) {
+    overlay.classList.remove('visible');
+  }
+}
+
+driver.addEventListener('scroll', render, { passive: true });
+render();
+
+window.addEventListener('keydown', e => {
+  const vh = window.innerHeight;
+  if (e.key==='ArrowDown'||e.key===' ') { driver.scrollBy({top:vh,behavior:'smooth'}); e.preventDefault(); }
+  if (e.key==='ArrowUp') { driver.scrollBy({top:-vh,behavior:'smooth'}); e.preventDefault(); }
+});
+
+
+/* ══════════════════════════════════════
+   SCRATCH ENGINE
+   The canvas (#s-canvas) has pointer-events:auto
+   and z-index:1000, so it receives touch events
+   DIRECTLY — no conflict with the scroll-driver.
+   The overlay background is pointer-events:none
+   so the scroll-driver still handles swipes in
+   the text areas above/below the photo.
+══════════════════════════════════════ */
+const SCRATCH_IDX  = 8;
+const sCanvas      = document.getElementById('s-canvas');
+const sCtx         = sCanvas.getContext('2d');
+const sHint        = document.getElementById('s-hint');
+const sContinue    = document.getElementById('s-continue');
+const sRevealBtn   = document.getElementById('s-reveal-btn');
+
+let scratchInited  = false;
+let scratchComplete = false;
+let sLastX = null, sLastY = null;
+let sMouseDown = false;
+
+/* ── Init: set canvas resolution + paint scratch overlay ── */
+function initScratch() {
+  const photo = document.getElementById('photo1-img');
+  const go = () => paintCanvas();
+  if (photo.complete && photo.naturalWidth > 0) go();
+  else photo.addEventListener('load', go);
+}
+
+function paintCanvas() {
+  const dpr  = window.devicePixelRatio || 1;
+  const wrap = document.getElementById('scratch-photo-wrap');
+  const W    = wrap.offsetWidth;
+  const H    = wrap.offsetHeight;
+
+  // Set physical resolution
+  sCanvas.width  = Math.round(W * dpr);
+  sCanvas.height = Math.round(H * dpr);
+
+  // Scale context so all draw calls use logical (CSS) pixels
+  sCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  // ── Fill: dark rose gradient ──
+  const g = sCtx.createLinearGradient(0, 0, W, H);
+  g.addColorStop(0,   '#c0607a');
+  g.addColorStop(0.5, '#a84f68');
+  g.addColorStop(1,   '#c06880');
+  sCtx.fillStyle = g;
+  sCtx.fillRect(0, 0, W, H);
+
+  // ── Subtle sparkle dots ──
+  for (let i = 0; i < 80; i++) {
+    sCtx.beginPath();
+    sCtx.arc(Math.random()*W, Math.random()*H, 1.5+Math.random()*5, 0, Math.PI*2);
+    sCtx.fillStyle = `rgba(255,255,255,${.04+Math.random()*.07})`;
+    sCtx.fill();
   }
 
-  function paintScratch() {
-    const dpr  = window.devicePixelRatio || 1;
-    scratchDPR = dpr;
-
-    const wrap = document.getElementById('scratch-wrap');
-    const W    = wrap.offsetWidth;
-    const H    = wrap.offsetHeight;
-
-    scratchCanvas.width  = W * dpr;
-    scratchCanvas.height = H * dpr;
-    scratchCtx.scale(dpr, dpr);
-
-    /* Background gradient — rosy */
-    const grad = scratchCtx.createLinearGradient(0, 0, W, H);
-    grad.addColorStop(0,   '#d4789a');
-    grad.addColorStop(0.5, '#c06b88');
-    grad.addColorStop(1,   '#d4879e');
-    scratchCtx.fillStyle = grad;
-    scratchCtx.fillRect(0, 0, W, H);
-
-    /* Subtle sparkle texture */
-    scratchCtx.fillStyle = 'rgba(255,255,255,0.06)';
-    for (let i = 0; i < 60; i++) {
-      scratchCtx.beginPath();
-      scratchCtx.arc(Math.random() * W, Math.random() * H, 2 + Math.random() * 7, 0, Math.PI * 2);
-      scratchCtx.fill();
-    }
-
-    /* Faint grid lines for a scratch-card texture */
-    scratchCtx.strokeStyle = 'rgba(255,255,255,0.07)';
-    scratchCtx.lineWidth = 1;
-    for (let x = 0; x < W; x += 12) {
-      scratchCtx.beginPath();
-      scratchCtx.moveTo(x, 0);
-      scratchCtx.lineTo(x, H);
-      scratchCtx.stroke();
-    }
-    for (let y = 0; y < H; y += 12) {
-      scratchCtx.beginPath();
-      scratchCtx.moveTo(0, y);
-      scratchCtx.lineTo(W, y);
-      scratchCtx.stroke();
-    }
-
-    /* Hint text */
-    scratchCtx.textAlign    = 'center';
-    scratchCtx.textBaseline = 'middle';
-
-    scratchCtx.font          = `${Math.round(H * 0.14)}px serif`;
-    scratchCtx.fillStyle     = 'rgba(255,255,255,0.55)';
-    scratchCtx.fillText('✦', W / 2, H * 0.38);
-
-    scratchCtx.font          = `500 ${Math.round(W * 0.054)}px DM Sans, sans-serif`;
-    scratchCtx.fillStyle     = 'rgba(255,255,255,0.65)';
-    scratchCtx.fillText('scratch to reveal', W / 2, H * 0.52);
-
-    scratchCtx.font          = `300 ${Math.round(W * 0.038)}px DM Sans, sans-serif`;
-    scratchCtx.fillStyle     = 'rgba(255,255,255,0.40)';
-    scratchCtx.fillText('something beautiful is underneath', W / 2, H * 0.61);
-
-    /* Enable pointer events on canvas */
-    scratchCanvas.style.pointerEvents = 'none'; // scroll driver handles events
+  // ── Fine hatching lines for texture ──
+  sCtx.strokeStyle = 'rgba(255,255,255,.05)';
+  sCtx.lineWidth = 1;
+  for (let x = 0; x < W; x += 10) {
+    sCtx.beginPath(); sCtx.moveTo(x,0); sCtx.lineTo(x,H); sCtx.stroke();
+  }
+  for (let y = 0; y < H; y += 10) {
+    sCtx.beginPath(); sCtx.moveTo(0,y); sCtx.lineTo(W,y); sCtx.stroke();
   }
 
-  /* ─── Scratch drawing ─── */
-  function doScratch(clientX, clientY) {
-    if (scratchComplete || !scratchInited) return;
+  // ── Hint text ──
+  sCtx.textAlign = 'center'; sCtx.textBaseline = 'middle';
+  sCtx.font = `${Math.round(H*.12)}px serif`;
+  sCtx.fillStyle = 'rgba(255,255,255,.5)';
+  sCtx.fillText('✦', W/2, H*.38);
 
-    const rect = scratchCanvas.getBoundingClientRect();
-    const x    = clientX - rect.left;
-    const y    = clientY - rect.top;
+  sCtx.font = `500 ${Math.round(W*.052)}px DM Sans, sans-serif`;
+  sCtx.fillStyle = 'rgba(255,255,255,.65)';
+  sCtx.fillText('scratch to reveal', W/2, H*.52);
 
-    scratchCtx.globalCompositeOperation = 'destination-out';
-    scratchCtx.lineWidth  = 68;
-    scratchCtx.lineCap    = 'round';
-    scratchCtx.lineJoin   = 'round';
+  sCtx.font = `300 ${Math.round(W*.036)}px DM Sans, sans-serif`;
+  sCtx.fillStyle = 'rgba(255,255,255,.38)';
+  sCtx.fillText('something beautiful is underneath', W/2, H*.61);
+}
 
-    scratchCtx.beginPath();
-    if (lastX !== null) {
-      scratchCtx.moveTo(lastX, lastY);
-      scratchCtx.lineTo(x, y);
-      scratchCtx.stroke();
-    }
-    scratchCtx.arc(x, y, 34, 0, Math.PI * 2);
-    scratchCtx.fill();
+/* ── Draw scratch stroke ── */
+function doScratch(clientX, clientY) {
+  if (scratchComplete) return;
 
-    lastX = x;
-    lastY = y;
+  const rect = sCanvas.getBoundingClientRect();
+  const x = clientX - rect.left;
+  const y = clientY - rect.top;
 
-    checkReveal();
+  sCtx.globalCompositeOperation = 'destination-out';
+  sCtx.lineWidth  = 72;
+  sCtx.lineCap    = 'round';
+  sCtx.lineJoin   = 'round';
+
+  sCtx.beginPath();
+  if (sLastX !== null) {
+    sCtx.moveTo(sLastX, sLastY);
+    sCtx.lineTo(x, y);
+    sCtx.stroke();
   }
+  sCtx.arc(x, y, 36, 0, Math.PI*2);
+  sCtx.fill();
 
-  /* ─── Check if enough is scratched ─── */
-  let revealTimer = null;
-  function checkReveal() {
-    if (revealTimer) return;
-    revealTimer = setTimeout(() => {
-      revealTimer = null;
-      if (scratchComplete) return;
+  sLastX = x; sLastY = y;
+  scheduleCheck();
+}
 
-      const data   = scratchCtx.getImageData(0, 0, scratchCanvas.width, scratchCanvas.height).data;
-      let cleared  = 0;
-      for (let i = 3; i < data.length; i += 4) {
-        if (data[i] < 10) cleared++;
-      }
-      const pct = cleared / (scratchCanvas.width * scratchCanvas.height);
+/* ── Throttled reveal check ── */
+let checkTimer = null;
+function scheduleCheck() {
+  if (checkTimer) return;
+  checkTimer = setTimeout(() => {
+    checkTimer = null;
+    if (scratchComplete) return;
+    const data = sCtx.getImageData(0, 0, sCanvas.width, sCanvas.height).data;
+    let cleared = 0;
+    for (let i = 3; i < data.length; i += 4) if (data[i] < 10) cleared++;
+    if (cleared / (sCanvas.width * sCanvas.height) > 0.58) fullReveal();
+  }, 200);
+}
 
-      if (pct > 0.58) autoReveal();
-    }, 180);
-  }
+function fullReveal() {
+  if (scratchComplete) return;
+  scratchComplete = true;
 
-  /* ─── Full reveal animation ─── */
-  function autoReveal() {
-    scratchComplete = true;
-    scratchCanvas.style.transition = 'opacity 0.9s ease';
-    scratchCanvas.style.opacity    = '0';
-    scratchHint.classList.add('hidden');
-    scratchContinue.classList.add('show');
-  }
+  // Fill any remaining opacity with destination-out
+  sCtx.globalCompositeOperation = 'destination-out';
+  sCtx.fillRect(0, 0, sCanvas.width / (window.devicePixelRatio||1), sCanvas.height / (window.devicePixelRatio||1));
 
-  /* ─── Touch events on scroll-driver (which sits on top) ─── */
-  let touchStartY = 0;
-  let touchStartX = 0;
-  let isScratchGesture = false;
+  sCanvas.style.opacity = '0';
+  sCanvas.style.pointerEvents = 'none'; // allow scrolling freely now
+  sHint.classList.add('gone');
+  sContinue.classList.add('show');
+}
 
-  driver.addEventListener('touchstart', (e) => {
-    touchStartX     = e.touches[0].clientX;
-    touchStartY     = e.touches[0].clientY;
-    isScratchGesture = false;
-    lastX = null; lastY = null;
-  }, { passive: true });
+/* ── Touch events on canvas (direct, no scroll-driver conflict) ── */
+sCanvas.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  sLastX = null; sLastY = null;
+  if (e.touches.length > 0) doScratch(e.touches[0].clientX, e.touches[0].clientY);
+}, { passive: false });
 
-  driver.addEventListener('touchmove', (e) => {
-    const nearestIdx = Math.round(driver.scrollTop / window.innerHeight);
-    if (nearestIdx !== SCRATCH_IDX || scratchComplete || !scratchInited) return;
+sCanvas.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  if (e.touches.length > 0) doScratch(e.touches[0].clientX, e.touches[0].clientY);
+}, { passive: false });
 
-    const touch = e.touches[0];
-    const dy    = touch.clientY - touchStartY;
+sCanvas.addEventListener('touchend', () => { sLastX = null; sLastY = null; }, { passive: true });
 
-    // Strong upward swipe (> 55px up) = scroll intent, let it through
-    if (dy < -55 && !isScratchGesture) return;
+/* ── Mouse (desktop) ── */
+sCanvas.addEventListener('mousedown', (e) => { sMouseDown = true; sLastX=null; sLastY=null; doScratch(e.clientX, e.clientY); });
+sCanvas.addEventListener('mousemove', (e) => { if (sMouseDown) doScratch(e.clientX, e.clientY); });
+sCanvas.addEventListener('mouseup',   ()  => { sMouseDown=false; sLastX=null; sLastY=null; });
+sCanvas.addEventListener('mouseleave',()  => { sMouseDown=false; sLastX=null; sLastY=null; });
 
-    // Otherwise treat as scratch
-    e.preventDefault();
-    isScratchGesture = true;
-    doScratch(touch.clientX, touch.clientY);
-  }, { passive: false });
-
-  driver.addEventListener('touchend', () => {
-    lastX = null; lastY = null;
-    isScratchGesture = false;
-  }, { passive: true });
-
-  /* ─── Mouse events (desktop testing) ─── */
-  driver.addEventListener('mousedown', (e) => {
-    isMouseDown = true;
-    lastX = null; lastY = null;
-    const nearestIdx = Math.round(driver.scrollTop / window.innerHeight);
-    if (nearestIdx === SCRATCH_IDX) doScratch(e.clientX, e.clientY);
-  });
-
-  driver.addEventListener('mousemove', (e) => {
-    if (!isMouseDown) return;
-    const nearestIdx = Math.round(driver.scrollTop / window.innerHeight);
-    if (nearestIdx === SCRATCH_IDX) doScratch(e.clientX, e.clientY);
-  });
-
-  driver.addEventListener('mouseup', () => {
-    isMouseDown = false;
-    lastX = null; lastY = null;
-  });
+/* ── Reveal-all button ── */
+sRevealBtn.addEventListener('click', fullReveal);
+sRevealBtn.addEventListener('touchend', (e) => { e.preventDefault(); fullReveal(); });
 </script>
 </body>
 </html>

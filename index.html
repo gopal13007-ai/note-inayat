@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy Birthday Inayat 🌸</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --blush:   #f7d6d8;
+      --rose:    #e8a0a8;
+      --mauve:   #c77d8a;
+      --sage:    #d4e5d0;
+      --cream:   #fdf6f0;
+      --warm:    #f9ede8;
+      --gold:    #c9956a;
+      --text:    #3d2630;
+      --text-lt: #7a5260;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      touch-action: none;
+    }
+
+    /* ─── SCENE ─── */
+    #scene {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ─── CARD WRAPPER ─── */
+    #card-stack {
+      position: relative;
+      width: min(390px, 100vw);
+      height: 100dvh;
+      perspective: 1000px;
+    }
+
+    /* ─── INDIVIDUAL CARD ─── */
+    .card {
+      position: absolute;
+      inset: 0;
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 32px;
+      text-align: center;
+      overflow: hidden;
+      cursor: grab;
+      will-change: transform, opacity;
+      transition: box-shadow 0.3s ease;
+      touch-action: none;
+      user-select: none;
+    }
+
+    .card:active { cursor: grabbing; }
+
+    /* gradient backgrounds per card */
+    .card-1 { background: linear-gradient(145deg, #fce4ec 0%, #f8bbd0 40%, #f3e5f5 100%); }
+    .card-2 { background: linear-gradient(145deg, #fdf6f0 0%, #fce4d6 50%, #f9d4e0 100%); }
+    .card-3 { background: linear-gradient(150deg, #e8f5e9 0%, #d4e5d0 50%, #fce4ec 100%); }
+    .card-4 { background: linear-gradient(140deg, #f3e5f5 0%, #e8d5f0 50%, #fce4ec 100%); }
+    .card-5 { background: linear-gradient(145deg, #fff8e1 0%, #fce4d6 50%, #f9d4e0 100%); }
+    .card-6 { background: linear-gradient(145deg, #fce4ec 0%, #fdf6f0 50%, #e8f5e9 100%); }
+    .card-7 { background: linear-gradient(145deg, #f8bbd0 0%, #f3e5f5 50%, #fff9c4 100%); }
+    .card-8 { background: linear-gradient(145deg, #e8d5f0 0%, #fce4ec 50%, #fdf6f0 100%); }
+
+    /* shadows so stacked cards peek */
+    .card { box-shadow: 0 20px 60px rgba(199, 125, 138, 0.18), 0 4px 16px rgba(199, 125, 138, 0.10); }
+
+    /* ─── DECORATIVE BLOBS ─── */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* ─── CARD 1 — name reveal ─── */
+    .card-1 .blob-a { width: 220px; height: 220px; background: #f48fb1; top: -60px; right: -60px; }
+    .card-1 .blob-b { width: 180px; height: 180px; background: #ce93d8; bottom: -50px; left: -50px; }
+
+    .tag-line {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--mauve);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(64px, 18vw, 86px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1;
+      opacity: 0;
+      animation: nameReveal 1.2s 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+      letter-spacing: -2px;
+    }
+
+    .hero-thirty {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(100px, 28vw, 140px);
+      font-weight: 600;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--rose);
+      line-height: 1;
+      margin-top: -8px;
+      opacity: 0;
+      animation: fadeUp 0.9s 1.0s forwards;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-lt);
+      font-weight: 300;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeUp 0.7s 1.5s forwards;
+    }
+
+    .floral-row {
+      font-size: 26px;
+      margin: 16px 0;
+      opacity: 0;
+      animation: fadeUp 0.6s 1.2s forwards;
+    }
+
+    /* ─── CARD BODY STYLES ─── */
+    .card-emoji {
+      font-size: 54px;
+      margin-bottom: 20px;
+      animation: floatEmoji 3s ease-in-out infinite;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 7vw, 36px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+
+    .card-body {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-lt);
+      font-weight: 300;
+      max-width: 300px;
+    }
+
+    .card-divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--mauve));
+      border-radius: 2px;
+      margin: 20px auto;
+    }
+
+    .card-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 5vw, 22px);
+      font-style: italic;
+      color: var(--mauve);
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+
+    /* ─── LAST CARD — finale ─── */
+    .card-final .final-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 12vw, 60px);
+      font-style: italic;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .card-final .final-msg {
+      font-size: 15px;
+      color: var(--text-lt);
+      font-weight: 300;
+      max-width: 280px;
+      line-height: 1.8;
+      margin-top: 16px;
+    }
+
+    .heart-pulse {
+      font-size: 60px;
+      animation: heartbeat 1.5s ease-in-out infinite;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    /* ─── PROGRESS DOTS ─── */
+    #dots {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 100;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--rose);
+      opacity: 0.3;
+      transition: opacity 0.3s, transform 0.3s, background 0.3s;
+    }
+
+    .dot.active {
+      opacity: 1;
+      transform: scale(1.4);
+      background: var(--mauve);
+    }
+
+    /* ─── SWIPE HINT ─── */
+    #swipe-hint {
+      position: fixed;
+      bottom: 68px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--mauve);
+      opacity: 0.7;
+      z-index: 100;
+      animation: hintFade 3s 2s forwards;
+    }
+
+    /* ─── FLOATING PETALS ─── */
+    .petal {
+      position: fixed;
+      pointer-events: none;
+      font-size: 18px;
+      opacity: 0;
+      z-index: 999;
+      animation: petalFall linear forwards;
+    }
+
+    /* ─── CONFETTI ─── */
+    .confetti-piece {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: confettiFall linear forwards;
+      border-radius: 2px;
+    }
+
+    /* ─── KEYFRAMES ─── */
+    @keyframes nameReveal {
+      from { opacity: 0; transform: translateY(30px) scale(0.9); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatEmoji {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14%       { transform: scale(1.2); }
+      28%       { transform: scale(1); }
+      42%       { transform: scale(1.15); }
+      56%       { transform: scale(1); }
+    }
+
+    @keyframes hintFade {
+      0%  { opacity: 0.7; }
+      70% { opacity: 0.7; }
+      100%{ opacity: 0; }
+    }
+
+    @keyframes petalFall {
+      0%   { opacity: 0.9; transform: translateY(0) rotate(0deg) scale(1); }
+      100% { opacity: 0;   transform: translateY(100vh) rotate(720deg) scale(0.5); }
+    }
+
+    @keyframes confettiFall {
+      0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
+    }
+
+    @keyframes cardSlideIn {
+      from { transform: translateY(60px) scale(0.95); opacity: 0; }
+      to   { transform: translateY(0) scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scene">
+  <div id="card-stack">
+
+    <!-- CARD 1: Name Reveal -->
+    <div class="card card-1" data-index="0">
+      <div class="blob blob-a"></div>
+      <div class="blob blob-b"></div>
+      <p class="tag-line">A little something for</p>
+      <h1 class="hero-name">Inayat</h1>
+      <div class="hero-thirty">30</div>
+      <div class="floral-row">🌸 🌷 🌺</div>
+      <p class="hero-sub">Swipe up to begin your birthday journey</p>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card card-2" data-index="1">
+      <div class="card-emoji">✨</div>
+      <h2 class="card-title">Thirty is not just a number</h2>
+      <div class="card-divider"></div>
+      <p class="card-body">
+        It's a whole chapter. A decade of becoming. A collection of late nights,
+        brave decisions, lessons hard-won — and so much beauty along the way.
+      </p>
+      <p class="card-quote">"She turned her can'ts into cans,<br/>and her dreams into plans."</p>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card card-3" data-index="2">
+      <div class="card-emoji">🌿</div>
+      <h2 class="card-title">You have grown so beautifully</h2>
+      <div class="card-divider"></div>
+      <p class="card-body">
+        Like a garden in full bloom, you've grown through seasons of change —
+        softening in the right places, strengthening in the ones that matter most.
+        Watching you become who you are has been a privilege.
+      </p>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card card-4" data-index="3">
+      <div class="card-emoji">💫</div>
+      <h2 class="card-title">The things I love most about you</h2>
+      <div class="card-divider"></div>
+      <p class="card-body">
+        Your laugh that fills up a whole room.<br/>
+        The way you care — deeply, fully, without keeping score.<br/>
+        Your strength that you wear so lightly.<br/>
+        And the rare kind of magic you bring<br/>just by being you.
+      </p>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="card card-5" data-index="4">
+      <div class="card-emoji">🌅</div>
+      <h2 class="card-title">Here's to your next chapter</h2>
+      <div class="card-divider"></div>
+      <p class="card-body">
+        May your 30s be filled with adventures that take your breath away,
+        love that feels like home, and mornings that make you excited
+        to be alive. You deserve every beautiful thing the universe has to offer.
+      </p>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="card card-6" data-index="5">
+      <div class="card-emoji">🌸</div>
+      <h2 class="card-title">A little reminder</h2>
+      <div class="card-divider"></div>
+      <p class="card-body">
+        You are allowed to take up space.<br/>
+        You are allowed to dream bigger.<br/>
+        You are allowed to rest.<br/>
+        And you are <em>always</em> allowed to choose yourself first.<br/><br/>
+        This decade is <strong>yours</strong>.
+      </p>
+    </div>
+
+    <!-- CARD 7 -->
+    <div class="card card-7" data-index="6">
+      <div class="card-emoji">🎂</div>
+      <h2 class="card-title">On this very special day</h2>
+      <div class="card-divider"></div>
+      <p class="card-body">
+        I hope you feel seen, celebrated, and completely surrounded
+        by love. I hope you eat the cake, dance a little, and let
+        yourself be fully, joyfully present.
+      </p>
+      <p class="card-quote">You only turn 30 once.<br/>Make it legendary. 🥂</p>
+    </div>
+
+    <!-- CARD 8: Finale -->
+    <div class="card card-8 card-final" data-index="7">
+      <span class="heart-pulse">💖</span>
+      <div class="final-name">Happy 30th,<br/>Inayat</div>
+      <div class="card-divider"></div>
+      <p class="final-msg">
+        Wishing you a lifetime of joy, love, and all the beautiful things
+        your heart has ever wanted. The world is so much better with you in it.
+        <br/><br/>
+        Here's to you. 🌸
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Progress dots -->
+<div id="dots"></div>
+
+<!-- Swipe hint -->
+<div id="swipe-hint">↑ swipe up</div>
+
+<script>
+  /* ─────────────────────────────────────────────
+     CARD STACK ENGINE
+  ───────────────────────────────────────────── */
+
+  const cards = [...document.querySelectorAll('.card')];
+  const dotsEl = document.getElementById('dots');
+  const TOTAL = cards.length;
+  let current = 0;
+  let isDragging = false;
+  let startY = 0;
+  let currentY = 0;
+  let dragDelta = 0;
+  let animating = false;
+  const THRESHOLD = 70; // px to trigger card change
+
+  /* Build dots */
+  cards.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    dotsEl.appendChild(d);
+  });
+
+  function getDots() { return [...dotsEl.querySelectorAll('.dot')]; }
+
+  /* Layout: position all cards in initial stacked look */
+  function layout(animate = false) {
+    cards.forEach((card, i) => {
+      const offset = i - current;
+      let tx = 0, ty = 0, scale = 1, opacity = 1, zIndex = TOTAL - Math.abs(offset);
+
+      if (offset < 0) {
+        // Cards that have been swiped away (above)
+        ty = -110 * Math.abs(offset) + '%';
+        opacity = 0;
+        zIndex = 0;
+        scale = 0.9;
+      } else if (offset === 0) {
+        // Current card
+        ty = 0;
+        scale = 1;
+        opacity = 1;
+        zIndex = TOTAL;
+      } else {
+        // Upcoming cards — peek slightly underneath
+        ty = offset * 14 + 'px';
+        scale = 1 - offset * 0.04;
+        opacity = Math.max(0, 1 - offset * 0.3);
+        zIndex = TOTAL - offset;
+      }
+
+      if (animate) {
+        card.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease';
+      } else {
+        card.style.transition = 'none';
+      }
+
+      card.style.transform = `translateY(${ty}) scale(${scale})`;
+      card.style.opacity = opacity;
+      card.style.zIndex = zIndex;
+      card.style.pointerEvents = offset === 0 ? 'auto' : 'none';
+    });
+
+    // Update dots
+    getDots().forEach((d, i) => {
+      d.className = 'dot' + (i === current ? ' active' : '');
+    });
+  }
+
+  /* Initial layout */
+  layout(false);
+
+  /* ─── DRAG / SWIPE HANDLERS ─── */
+  function getClientY(e) {
+    return e.touches ? e.touches[0].clientY : e.clientY;
+  }
+
+  function onStart(e) {
+    if (animating) return;
+    isDragging = true;
+    startY = getClientY(e);
+    currentY = startY;
+    dragDelta = 0;
+    cards[current].style.transition = 'none';
+  }
+
+  function onMove(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    currentY = getClientY(e);
+    dragDelta = currentY - startY;
+
+    // Only allow dragging up (to go forward) or slightly down (rubber band)
+    let pull = dragDelta;
+    if (pull > 0) pull = pull * 0.25; // resist going back
+    if (pull < 0 && current === TOTAL - 1) pull = pull * 0.15; // resist past last
+
+    cards[current].style.transform = `translateY(${pull}px) scale(${1 - Math.abs(pull) * 0.0003})`;
+
+    // Peek the next card
+    if (pull < 0 && current < TOTAL - 1) {
+      const progress = Math.min(Math.abs(pull) / THRESHOLD, 1);
+      const nextCard = cards[current + 1];
+      const nextOffset = 1;
+      const baseScale = 1 - nextOffset * 0.04;
+      const baseY = nextOffset * 14;
+      nextCard.style.transform = `translateY(${baseY - progress * 14}px) scale(${baseScale + progress * 0.04})`;
+      nextCard.style.opacity = Math.max(0, 1 - nextOffset * 0.3) + progress * 0.3;
+    }
+  }
+
+  function onEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+
+    if (dragDelta < -THRESHOLD && current < TOTAL - 1) {
+      goNext();
+    } else if (dragDelta > THRESHOLD && current > 0) {
+      goPrev();
+    } else {
+      layout(true); // snap back
+    }
+  }
+
+  function goNext() {
+    if (current >= TOTAL - 1 || animating) return;
+    animating = true;
+
+    // Fly current card off to top
+    const card = cards[current];
+    card.style.transition = 'transform 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease';
+    card.style.transform = 'translateY(-110%) scale(0.9)';
+    card.style.opacity = '0';
+
+    setTimeout(() => {
+      current++;
+      layout(false);
+      // Animate new current in
+      const newCard = cards[current];
+      newCard.style.transition = 'transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease';
+      requestAnimationFrame(() => {
+        newCard.style.transform = 'translateY(0) scale(1)';
+        newCard.style.opacity = '1';
+      });
+
+      layout(true);
+
+      // Sprinkle petals on each transition
+      spawnPetals(5);
+
+      // Confetti on last card
+      if (current === TOTAL - 1) {
+        setTimeout(() => spawnConfetti(), 300);
+      }
+
+      setTimeout(() => { animating = false; }, 500);
+    }, 350);
+  }
+
+  function goPrev() {
+    if (current <= 0 || animating) return;
+    animating = true;
+    current--;
+    layout(true);
+    setTimeout(() => { animating = false; }, 500);
+  }
+
+  /* ─── EVENT LISTENERS ─── */
+  const stack = document.getElementById('card-stack');
+  stack.addEventListener('touchstart', onStart, { passive: false });
+  stack.addEventListener('touchmove', onMove, { passive: false });
+  stack.addEventListener('touchend', onEnd);
+  stack.addEventListener('mousedown', onStart);
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onEnd);
+
+  /* Keyboard nav (for testing on desktop) */
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp' || e.key === ' ') goNext();
+    if (e.key === 'ArrowDown') goPrev();
+  });
+
+  /* ─── PETALS ─── */
+  const petalEmojis = ['🌸', '🌺', '🌷', '✿', '❀', '🌼'];
+
+  function spawnPetals(count = 6) {
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.top = '-40px';
+        const dur = 2.5 + Math.random() * 2;
+        p.style.animationDuration = dur + 's';
+        p.style.fontSize = (14 + Math.random() * 16) + 'px';
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), dur * 1000);
+      }, i * 120);
+    }
+  }
+
+  /* ─── CONFETTI ─── */
+  const confettiColors = ['#f48fb1','#ce93d8','#80cbc4','#fff59d','#ffcc80','#f8bbd0','#c5e1a5'];
+
+  function spawnConfetti() {
+    for (let i = 0; i < 80; i++) {
+      setTimeout(() => {
+        const c = document.createElement('div');
+        c.className = 'confetti-piece';
+        c.style.left = (10 + Math.random() * 80) + 'vw';
+        c.style.top = '-20px';
+        c.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        const size = 6 + Math.random() * 10;
+        c.style.width = size + 'px';
+        c.style.height = size + 'px';
+        c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        const dur = 2 + Math.random() * 2.5;
+        c.style.animationDuration = dur + 's';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), dur * 1000);
+      }, i * 40);
+    }
+    // Trigger more waves
+    setTimeout(() => spawnConfetti2(), 1200);
+  }
+
+  function spawnConfetti2() {
+    for (let i = 0; i < 50; i++) {
+      setTimeout(() => {
+        const c = document.createElement('div');
+        c.className = 'confetti-piece';
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.top = '-20px';
+        c.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        const size = 5 + Math.random() * 8;
+        c.style.width = size + 'px';
+        c.style.height = size + 'px';
+        c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        const dur = 1.8 + Math.random() * 2;
+        c.style.animationDuration = dur + 's';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), dur * 1000);
+      }, i * 30);
+    }
+  }
+
+  /* initial petal sprinkle on load */
+  setTimeout(() => spawnPetals(4), 2000);
+</script>
+</body>
+</html>

@@ -1,39 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Happy 30th Birthday Inayat 🌸</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
   <style>
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       -webkit-tap-highlight-color: transparent;
     }
 
     :root {
-      --rose: #e89fa9;
-      --mauve: #b36475;
+      --rose:       #e89fa9;
+      --mauve:      #b36475;
       --deep-mauve: #803445;
-      --cream: #fdf7f4;
-      --text: #38212a;
-      --text-lt: #6b4956;
-      --card-w: min(420px, calc(100vw - 16px));
-      --card-h: min(780px, calc(100dvh - 36px));
+      --cream:      #fdf7f4;
+      --text:       #38212a;
+      --text-lt:    #6b4956;
+      --card-w:     min(420px, calc(100vw - 16px));
+      --card-h:     min(780px, calc(100dvh - 36px));
     }
 
-    html,
-    body {
+    html, body {
       height: 100%;
       width: 100%;
       overflow: hidden;
@@ -115,42 +107,14 @@
     }
 
     /* Elegant Soft Gradients per Card */
-    .card-1 {
-      background: linear-gradient(165deg, #fff5f7 0%, #fae2e8 48%, #f4dce7 100%);
-    }
-
-    .card-2 {
-      background: linear-gradient(165deg, #fdf9f6 0%, #fae7e0 50%, #fae2eb 100%);
-    }
-
-    .card-3 {
-      background: linear-gradient(165deg, #f3f9f4 0%, #e5f1e6 50%, #fae6ee 100%);
-    }
-
-    .card-4 {
-      background: linear-gradient(165deg, #fcf5ee 0%, #fae7dc 50%, #fbe3eb 100%);
-    }
-
-    /* NGO Note */
-    .card-5 {
-      background: linear-gradient(165deg, #fff5f7 0%, #fae3ec 50%, #fbe8dd 100%);
-    }
-
-    /* Scratch Card */
-    .card-6 {
-      background: linear-gradient(165deg, #fdf8f4 0%, #faeae3 50%, #fce8f0 100%);
-    }
-
-    /* Photo 2 Blessings */
-    .card-7 {
-      background: linear-gradient(165deg, #f8f3fa 0%, #eeddf3 50%, #fae3ec 100%);
-    }
-
-    .card-8 {
-      background: linear-gradient(165deg, #fff5f7 0%, #fde6ec 50%, #fbf2ea 100%);
-    }
-
-    /* Finale */
+    .card-1 { background: linear-gradient(165deg, #fff5f7 0%, #fae2e8 48%, #f4dce7 100%); }
+    .card-2 { background: linear-gradient(165deg, #fdf9f6 0%, #fae7e0 50%, #fae2eb 100%); }
+    .card-3 { background: linear-gradient(165deg, #f3f9f4 0%, #e5f1e6 50%, #fae6ee 100%); }
+    .card-4 { background: linear-gradient(165deg, #fcf5ee 0%, #fae7dc 50%, #fbe3eb 100%); } /* NGO Note */
+    .card-5 { background: linear-gradient(165deg, #fff5f7 0%, #fae3ec 50%, #fbe8dd 100%); } /* Scratch Card */
+    .card-6 { background: linear-gradient(165deg, #fdf8f4 0%, #faeae3 50%, #fce8f0 100%); } /* Photo 2 Blessings */
+    .card-7 { background: linear-gradient(165deg, #f8f3fa 0%, #eeddf3 50%, #fae3ec 100%); }
+    .card-8 { background: linear-gradient(165deg, #fff5f7 0%, #fde6ec 50%, #fbf2ea 100%); } /* Finale */
 
     /* Inner Container for guaranteed vertical fit & neat placement */
     .card-content {
@@ -234,7 +198,7 @@
       max-width: 320px;
     }
 
-    .card-body p+p {
+    .card-body p + p {
       margin-top: 10px;
     }
 
@@ -398,11 +362,17 @@
     }
 
     .signature {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 22px;
-      font-style: italic;
+      font-family: 'Caveat', cursive, sans-serif;
+      font-size: clamp(20px, 5.2vw, 24px);
+      line-height: 1.45;
       color: var(--deep-mauve);
-      margin-top: 14px;
+      margin-top: 18px;
+      max-width: 310px;
+      padding: 12px 18px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 18px;
+      box-shadow: 0 4px 16px rgba(179, 100, 117, 0.1);
     }
 
     /* ─── PROGRESS DOTS (RIGHT SIDE) ─── */
@@ -482,611 +452,585 @@
 
     /* Keyframes */
     @keyframes heartPulse {
-
-      0%,
-      100% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.14);
-      }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.14); }
     }
 
     @keyframes popIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.88);
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
+      0% { opacity: 0; transform: scale(0.88); }
+      100% { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
-
 <body>
 
-  <div id="app">
-    <div id="deck">
+<div id="app">
+  <div id="deck">
 
-      <!-- CARD 1: Name Reveal & Intro -->
-      <div class="card card-1" data-index="0">
-        <div class="card-content">
-          <p class="tag-line">Cheers to 30 years</p>
-          <h1 class="hero-name" style="font-size: clamp(42px, 11vw, 54px); line-height: 1.08; margin-bottom: 6px;">
-            Happy birthday<br/>Inayat
-          </h1>
-          <div class="hero-thirty">30</div>
-          <div class="floral-row">🌸 🌷 🌺</div>
-          <p class="card-body" style="font-size: 15.5px; line-height: 1.6; max-width: 290px; color: var(--deep-mauve); font-weight: 500;">
-            Finally, you are right, it's 7 now not 6..
-          </p>
-          <p class="card-quote" style="margin-top: 14px; font-size: 14px;">
-            Swipe up to begin ↓
-          </p>
+    <!-- CARD 1: Name Reveal & Intro -->
+    <div class="card card-1" data-index="0">
+      <div class="card-content">
+        <p class="tag-line">A special wish for</p>
+        <h1 class="hero-name">Inayat</h1>
+        <div class="hero-thirty">30</div>
+        <div class="floral-row">🌸 🌷 🌺</div>
+        <p class="card-body" style="font-size: 14px; max-width: 270px;">
+          A milestone celebrating all the warmth, grace, and light you bring to the world.
+        </p>
+        <p class="card-quote" style="margin-top: 14px; font-size: 15px;">
+          Swipe up to begin ↓
+        </p>
+      </div>
+    </div>
+
+    <!-- CARD 2: Reflection on 30 -->
+    <div class="card card-2" data-index="1">
+      <div class="card-content">
+        <div class="card-icon">✨</div>
+        <h2 class="card-title">Thirty is not just a number</h2>
+        <div class="card-divider"></div>
+        <div class="card-body">
+          <p>It's an entire chapter. A decade of becoming who you were always meant to be.</p>
+          <p>A collection of late-night talks, brave choices, lessons held close, and so much quiet beauty along the way.</p>
+        </div>
+        <p class="card-quote">"She turned her dreams into plans,<br/>and her heart into home."</p>
+      </div>
+    </div>
+
+    <!-- CARD 3: Her Rare Magic -->
+    <div class="card card-3" data-index="2">
+      <div class="card-content">
+        <div class="card-icon">🌿</div>
+        <h2 class="card-title">What makes you so rare</h2>
+        <div class="card-divider"></div>
+        <div class="card-body">
+          <p>Your laugh that effortlessly brightens every room you walk into.</p>
+          <p>The genuine warmth with which you care for the people in your life — without keeping score, always with an open heart.</p>
+          <p>And that quiet strength you carry so gracefully every single day.</p>
         </div>
       </div>
+    </div>
 
-      <!-- CARD 2: Reflection on 30 -->
-      <div class="card card-2" data-index="1">
-        <div class="card-content">
-          <div class="card-icon">✨</div>
-          <h2 class="card-title">Thirty is not just a number</h2>
-          <div class="card-divider"></div>
-          <div class="card-body">
-            <p>It's an entire chapter. A decade of becoming who you were always meant to be.</p>
-            <p>A collection of late-night talks, brave choices, lessons held close, and so much quiet beauty along the
-              way.</p>
+    <!-- CARD 4: The Personal NGO Story (From "Me") -->
+    <div class="card card-4" data-index="3">
+      <div class="card-content">
+        <div class="personal-badge">🤍 A personal gift from me</div>
+        <h2 class="card-title">A dream I wanted to share with you</h2>
+        <div class="card-divider"></div>
+        <div class="card-body">
+          <div class="personal-note-box">
+            <p>I’ve carried this dream in my heart for a long time — to celebrate a special milestone with children who have so little, yet give the purest joy in return.</p>
+            <p style="margin-top: 10px;">When your 30th birthday arrived, it felt like the most meaningful reason to finally make it happen.</p>
+            <p style="margin-top: 10px;">So I connected with an NGO, and together we organized a celebration in your name...</p>
           </div>
-          <p class="card-quote">"She turned her dreams into plans,<br />and her heart into home."</p>
         </div>
+        <p class="card-quote" style="font-size: 15.5px; margin-top: 14px;">
+          Swipe up to see what they prepared for you ✨
+        </p>
       </div>
-
-      <!-- CARD 3: Her Rare Magic -->
-      <div class="card card-3" data-index="2">
-        <div class="card-content">
-          <div class="card-icon">🌿</div>
-          <h2 class="card-title">What makes you so rare</h2>
-          <div class="card-divider"></div>
-          <div class="card-body">
-            <p>Your laugh that effortlessly brightens every room you walk into.</p>
-            <p>The genuine warmth with which you care for the people in your life — without keeping score, always with
-              an open heart.</p>
-            <p>And that quiet strength you carry so gracefully every single day.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- CARD 4: The Personal NGO Story (From "Me") -->
-      <div class="card card-4" data-index="3">
-        <div class="card-content">
-          <div class="personal-badge">🤍 A personal gift from me</div>
-          <h2 class="card-title">A dream I wanted to share with you</h2>
-          <div class="card-divider"></div>
-          <div class="card-body">
-            <div class="personal-note-box">
-              <p>I’ve carried this dream in my heart for a long time — to celebrate a special milestone with children
-                who have so little, yet give the purest joy in return.</p>
-              <p style="margin-top: 10px;">When your 30th birthday arrived, it felt like the most meaningful reason to
-                finally make it happen.</p>
-              <p style="margin-top: 10px;">So I connected with an NGO, and together we organized a celebration in your
-                name...</p>
-            </div>
-          </div>
-          <p class="card-quote" style="font-size: 15.5px; margin-top: 14px;">
-            Swipe up to see what they prepared for you ✨
-          </p>
-        </div>
-      </div>
+    </div>
 
     <!-- CARD 5: THE SCRATCH CARD (Photo 1 - Cake & Kids) -->
     <div class="card card-5" data-index="4">
       <div class="card-content">
-        <h2 class="card-title" style="margin-bottom: 2px; font-size: clamp(23px, 6.2vw, 28px);">Their smiles for you 🎂</h2>
+        <h2 class="card-title" style="margin-bottom: 4px;">Their smiles for you 🎂</h2>
         <p class="tag-line" style="margin-bottom: 6px; font-size: 10.5px;">A cake baked with your name</p>
 
-          <!-- Scratch Box Container -->
-          <div class="scratch-container" id="scratch-box">
-            <img src="./photo1.jpg" alt="Children celebrating Inayat's 30th birthday with a cake" class="scratch-img" />
-            <canvas id="scratch-canvas"></canvas>
-          </div>
-
-          <div class="scratch-hint-pill" id="scratch-hint">
-            <span>✨</span> Scratch with your finger to reveal
-          </div>
-          <div class="revealed-badge" id="revealed-badge">
-            💖 Revealed! Look at that cake made for you!
-          </div>
-          <button class="scratch-action-btn" id="reveal-btn">Tap to reveal completely</button>
+        <!-- Scratch Box Container -->
+        <div class="scratch-container" id="scratch-box">
+          <img src="./photo1.jpg" alt="Children celebrating Inayat's 30th birthday with a cake" class="scratch-img" />
+          <canvas id="scratch-canvas"></canvas>
         </div>
-      </div>
 
-      <!-- CARD 6: PHOTO 2 (Blessings & Joy) -->
-      <div class="card card-6" data-index="5">
-        <div class="card-content">
-          <h2 class="card-title" style="margin-bottom: 2px; font-size: clamp(23px, 6.2vw, 28px);">Pure love & blessings 🕊️</h2>
-          <p class="tag-line" style="margin-bottom: 6px; font-size: 10.5px;">Every smile is a prayer for you</p>
-
-          <div class="photo-frame">
-            <img src="./photo2.jpg" alt="Children joyfully eating birthday cake" />
-          </div>
-
-          <div class="card-body" style="font-size: 13px; line-height: 1.5; max-width: 320px; margin-top: 2px;">
-            <p>Look at these radiant, happy faces enjoying their cake. Today you brought pure, honest joy to their world.</p>
-            <p style="margin-top: 4px;">May every smile and blessing they sent you come back to you a hundredfold in your 30s.</p>
-          </div>
+        <div class="scratch-hint-pill" id="scratch-hint">
+          <span>✨</span> Scratch with your finger to reveal
         </div>
-      </div>
-
-      <!-- CARD 7: Affirmations for 30s -->
-      <div class="card card-7" data-index="6">
-        <div class="card-content">
-          <div class="card-icon">🌸</div>
-          <h2 class="card-title">A gentle reminder</h2>
-          <div class="card-divider"></div>
-          <div class="card-body">
-            <p>You are allowed to take up space.</p>
-            <p>You are allowed to dream even bigger than before.</p>
-            <p>You are allowed to rest without explanation.</p>
-            <p>And you are <strong>always</strong> worthy of choosing yourself.</p>
-            <p style="margin-top: 14px; font-size: 15.5px; color: var(--deep-mauve); font-weight: 600;">
-              This decade belongs to you.
-            </p>
-          </div>
+        <div class="revealed-badge" id="revealed-badge">
+          💖 Revealed! Look at that cake made for you!
         </div>
+        <button class="scratch-action-btn" id="reveal-btn">Tap to reveal completely</button>
       </div>
-
-      <!-- CARD 8: Finale -->
-      <div class="card card-8" data-index="7">
-        <div class="card-content">
-          <span class="heart-pulse">💖</span>
-          <h2 class="card-title" style="font-size: clamp(34px, 9vw, 42px); margin-bottom: 8px;">
-            Happy 30th,<br />Inayat
-          </h2>
-          <div class="card-divider"></div>
-          <div class="card-body">
-            <p>Wishing you a year filled with laughter that makes your cheeks hurt, peace that anchors your spirit, and
-              love that feels like home.</p>
-            <p style="margin-top: 10px;">The world is truly a warmer, brighter place with you in it.</p>
-          </div>
-          <div class="signature">With all my love & warmest wishes 🌸</div>
-        </div>
-      </div>
-
     </div>
+
+    <!-- CARD 6: PHOTO 2 (Blessings & Joy) -->
+    <div class="card card-6" data-index="5">
+      <div class="card-content">
+        <h2 class="card-title" style="margin-bottom: 4px;">Pure love & blessings 🕊️</h2>
+        <p class="tag-line" style="margin-bottom: 8px; font-size: 10.5px;">Every smile is a prayer for you</p>
+
+        <div class="photo-frame">
+          <img src="./photo2.jpg" alt="Children joyfully eating birthday cake" />
+        </div>
+
+        <div class="card-body" style="font-size: 14px; line-height: 1.65; max-width: 310px;">
+          <p>Look at these radiant, happy faces enjoying their cake. They don’t know you, but today you brought genuine joy to their world.</p>
+          <p style="margin-top: 6px;">May all the light and goodness you put into this world find its way back to you a hundredfold.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 7: Affirmations for 30s -->
+    <div class="card card-7" data-index="6">
+      <div class="card-content">
+        <div class="card-icon">🌸</div>
+        <h2 class="card-title">A gentle reminder</h2>
+        <div class="card-divider"></div>
+        <div class="card-body">
+          <p>You are allowed to take up space.</p>
+          <p>You are allowed to dream even bigger than before.</p>
+          <p>You are allowed to rest without explanation.</p>
+          <p>And you are <strong>always</strong> worthy of choosing yourself.</p>
+          <p style="margin-top: 14px; font-size: 15.5px; color: var(--deep-mauve); font-weight: 600;">
+            This decade belongs to you.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 8: Finale -->
+    <div class="card card-8" data-index="7">
+      <div class="card-content">
+        <span class="heart-pulse">💖</span>
+        <h2 class="card-title" style="font-size: clamp(34px, 9vw, 42px); margin-bottom: 8px;">
+          Happy 30th,<br/>Inayat
+        </h2>
+        <div class="card-divider"></div>
+        <div class="card-body">
+          <p>Wishing you a year filled with laughter that makes your cheeks hurt, peace that anchors your spirit, and love that feels like home.</p>
+          <p style="margin-top: 10px;">The world is truly a warmer, brighter place with you in it.</p>
+        </div>
+        <div class="signature">
+          “I might not always be there for you in the good times, but you can keep me on speed dial if there are ever tough times.” 🤍
+        </div>
+      </div>
+    </div>
+
   </div>
+</div>
 
-  <!-- Progress Dots -->
-  <div id="dots"></div>
+<!-- Progress Dots -->
+<div id="dots"></div>
 
-  <!-- Floating Navigation Bar -->
-  <div id="nav-bar">
-    <button class="nav-btn" id="prev-btn" style="display: none;">
-      <svg viewBox="0 0 24 24">
-        <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
-      </svg>
-      Back
-    </button>
-    <button class="nav-btn" id="next-btn">
-      Next
-      <svg viewBox="0 0 24 24">
-        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
-      </svg>
-    </button>
-  </div>
+<!-- Floating Navigation Bar -->
+<div id="nav-bar">
+  <button class="nav-btn" id="prev-btn" style="display: none;">
+    <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+    Back
+  </button>
+  <button class="nav-btn" id="next-btn">
+    Next
+    <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+  </button>
+</div>
 
-  <script>
-    /* ═══════════════════════════════════════════════════
-       ZERO-LAG HARDWARE ACCELERATED CARD DECK ENGINE
-       - Uses translate3d for GPU compositing
-       - requestAnimationFrame for smooth finger tracking
-       - Instant flick / velocity detection
-       - Isolated scratch canvas touch
-    ═══════════════════════════════════════════════════════ */
+<script>
+  /* ═══════════════════════════════════════════════════
+     ZERO-LAG HARDWARE ACCELERATED CARD DECK ENGINE
+     - Uses translate3d for GPU compositing
+     - requestAnimationFrame for smooth finger tracking
+     - Instant flick / velocity detection
+     - Isolated scratch canvas touch
+  ═══════════════════════════════════════════════════════ */
 
-    const deck = document.getElementById('deck');
-    const cards = [...document.querySelectorAll('.card')];
-    const dotsContainer = document.getElementById('dots');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const TOTAL = cards.length;
+  const deck = document.getElementById('deck');
+  const cards = [...document.querySelectorAll('.card')];
+  const dotsContainer = document.getElementById('dots');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const TOTAL = cards.length;
 
-    let currentIndex = 0;
-    let isDragging = false;
-    let startY = 0;
-    let startTime = 0;
-    let deltaY = 0;
-    let isAnimating = false;
-    let rafId = null;
+  let currentIndex = 0;
+  let isDragging = false;
+  let startY = 0;
+  let startTime = 0;
+  let deltaY = 0;
+  let isAnimating = false;
+  let rafId = null;
 
-    /* ── Build Dots ── */
-    cards.forEach((_, i) => {
-      const dot = document.createElement('div');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', `Card ${i + 1}`);
-      dot.addEventListener('click', () => goToCard(i));
-      dotsContainer.appendChild(dot);
+  /* ── Build Dots ── */
+  cards.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Card ${i + 1}`);
+    dot.addEventListener('click', () => goToCard(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  function updateDots() {
+    const dots = [...dotsContainer.querySelectorAll('.dot')];
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === currentIndex);
+    });
+    prevBtn.style.display = currentIndex > 0 ? 'inline-flex' : 'none';
+    if (currentIndex === TOTAL - 1) {
+      nextBtn.innerHTML = 'Back to start <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>';
+    } else {
+      nextBtn.innerHTML = 'Next <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>';
+    }
+  }
+
+  /* ── Fast GPU-Accelerated Deck Layout ── */
+  function updateDeck(animate = true, dragOffset = 0) {
+    cards.forEach((card, i) => {
+      const offset = i - currentIndex;
+
+      if (animate) {
+        card.style.transition = 'transform 0.36s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease';
+      } else {
+        card.style.transition = 'none';
+      }
+
+      if (offset < 0) {
+        // Swiped away to the top
+        card.style.transform = `translate3d(0, -104%, 0) scale(0.96)`;
+        card.style.opacity = '0';
+        card.style.zIndex = TOTAL + offset;
+        card.style.pointerEvents = 'none';
+      } else if (offset === 0) {
+        // Active card
+        const ty = dragOffset;
+        const scale = 1 - Math.abs(dragOffset) * 0.00025;
+        card.style.transform = `translate3d(0, ${ty}px, 0) scale(${scale})`;
+        card.style.opacity = '1';
+        card.style.zIndex = TOTAL;
+        card.style.pointerEvents = 'auto';
+      } else if (offset === 1) {
+        // Next card rising from peek
+        const baseTy = 20;
+        const baseScale = 0.94;
+        const baseOpacity = 0.85;
+
+        const progress = Math.max(0, Math.min(-dragOffset / 150, 1));
+        const currentTy = baseTy - progress * baseTy;
+        const currentScale = baseScale + progress * (1 - baseScale);
+        const currentOpacity = baseOpacity + progress * (1 - baseOpacity);
+
+        card.style.transform = `translate3d(0, ${currentTy}px, 0) scale(${currentScale})`;
+        card.style.opacity = currentOpacity;
+        card.style.zIndex = TOTAL - 1;
+        card.style.pointerEvents = 'none';
+      } else if (offset === 2) {
+        card.style.transform = `translate3d(0, 36px, 0) scale(0.88)`;
+        card.style.opacity = '0.45';
+        card.style.zIndex = TOTAL - 2;
+        card.style.pointerEvents = 'none';
+      } else {
+        card.style.transform = `translate3d(0, 50px, 0) scale(0.82)`;
+        card.style.opacity = '0';
+        card.style.zIndex = 1;
+        card.style.pointerEvents = 'none';
+      }
     });
 
-    function updateDots() {
-      const dots = [...dotsContainer.querySelectorAll('.dot')];
-      dots.forEach((d, i) => {
-        d.classList.toggle('active', i === currentIndex);
-      });
-      prevBtn.style.display = currentIndex > 0 ? 'inline-flex' : 'none';
-      if (currentIndex === TOTAL - 1) {
-        nextBtn.innerHTML = 'Back to start <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>';
-      } else {
-        nextBtn.innerHTML = 'Next <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>';
-      }
+    updateDots();
+  }
+
+  function goToCard(index) {
+    if (index < 0 || index >= TOTAL || isAnimating) return;
+    isAnimating = true;
+    currentIndex = index;
+    updateDeck(true, 0);
+    setTimeout(() => { isAnimating = false; }, 360);
+  }
+
+  function nextCard() {
+    if (currentIndex < TOTAL - 1) {
+      goToCard(currentIndex + 1);
+    } else {
+      goToCard(0);
     }
+  }
 
-    /* ── Fast GPU-Accelerated Deck Layout ── */
-    function updateDeck(animate = true, dragOffset = 0) {
-      cards.forEach((card, i) => {
-        const offset = i - currentIndex;
-
-        if (animate) {
-          card.style.transition = 'transform 0.36s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease';
-        } else {
-          card.style.transition = 'none';
-        }
-
-        if (offset < 0) {
-          // Swiped away to the top
-          card.style.transform = `translate3d(0, -104%, 0) scale(0.96)`;
-          card.style.opacity = '0';
-          card.style.zIndex = TOTAL + offset;
-          card.style.pointerEvents = 'none';
-        } else if (offset === 0) {
-          // Active card
-          const ty = dragOffset;
-          const scale = 1 - Math.abs(dragOffset) * 0.00025;
-          card.style.transform = `translate3d(0, ${ty}px, 0) scale(${scale})`;
-          card.style.opacity = '1';
-          card.style.zIndex = TOTAL;
-          card.style.pointerEvents = 'auto';
-        } else if (offset === 1) {
-          // Next card rising from peek
-          const baseTy = 20;
-          const baseScale = 0.94;
-          const baseOpacity = 0.85;
-
-          const progress = Math.max(0, Math.min(-dragOffset / 150, 1));
-          const currentTy = baseTy - progress * baseTy;
-          const currentScale = baseScale + progress * (1 - baseScale);
-          const currentOpacity = baseOpacity + progress * (1 - baseOpacity);
-
-          card.style.transform = `translate3d(0, ${currentTy}px, 0) scale(${currentScale})`;
-          card.style.opacity = currentOpacity;
-          card.style.zIndex = TOTAL - 1;
-          card.style.pointerEvents = 'none';
-        } else if (offset === 2) {
-          card.style.transform = `translate3d(0, 36px, 0) scale(0.88)`;
-          card.style.opacity = '0.45';
-          card.style.zIndex = TOTAL - 2;
-          card.style.pointerEvents = 'none';
-        } else {
-          card.style.transform = `translate3d(0, 50px, 0) scale(0.82)`;
-          card.style.opacity = '0';
-          card.style.zIndex = 1;
-          card.style.pointerEvents = 'none';
-        }
-      });
-
-      updateDots();
+  function prevCard() {
+    if (currentIndex > 0) {
+      goToCard(currentIndex - 1);
     }
+  }
 
-    function goToCard(index) {
-      if (index < 0 || index >= TOTAL || isAnimating) return;
-      isAnimating = true;
-      currentIndex = index;
-      updateDeck(true, 0);
-      setTimeout(() => { isAnimating = false; }, 360);
-    }
+  /* ── 60/120fps Touch Swipe with rAF ── */
+  deck.addEventListener('touchstart', (e) => {
+    if (e.target.closest('#scratch-canvas')) return;
+    if (isAnimating) return;
 
-    function nextCard() {
-      if (currentIndex < TOTAL - 1) {
-        goToCard(currentIndex + 1);
-      } else {
-        goToCard(0);
-      }
-    }
+    isDragging = true;
+    startY = e.touches[0].clientY;
+    startTime = Date.now();
+    deltaY = 0;
+  }, { passive: true });
 
-    function prevCard() {
-      if (currentIndex > 0) {
-        goToCard(currentIndex - 1);
-      }
-    }
+  deck.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const currentY = e.touches[0].clientY;
+    deltaY = currentY - startY;
 
-    /* ── 60/120fps Touch Swipe with rAF ── */
-    deck.addEventListener('touchstart', (e) => {
-      if (e.target.closest('#scratch-canvas')) return;
-      if (isAnimating) return;
+    if (currentIndex === 0 && deltaY > 0) deltaY *= 0.3;
+    if (currentIndex === TOTAL - 1 && deltaY < 0) deltaY *= 0.3;
 
-      isDragging = true;
-      startY = e.touches[0].clientY;
-      startTime = Date.now();
-      deltaY = 0;
-    }, { passive: true });
-
-    deck.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      const currentY = e.touches[0].clientY;
-      deltaY = currentY - startY;
-
-      if (currentIndex === 0 && deltaY > 0) deltaY *= 0.3;
-      if (currentIndex === TOTAL - 1 && deltaY < 0) deltaY *= 0.3;
-
-      if (!rafId) {
-        rafId = requestAnimationFrame(() => {
-          updateDeck(false, deltaY);
-          rafId = null;
-        });
-      }
-    }, { passive: true });
-
-    deck.addEventListener('touchend', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      if (rafId) {
-        cancelAnimationFrame(rafId);
+    if (!rafId) {
+      rafId = requestAnimationFrame(() => {
+        updateDeck(false, deltaY);
         rafId = null;
-      }
-
-      const elapsed = Date.now() - startTime;
-      const velocity = Math.abs(deltaY) / elapsed;
-      const isFlick = velocity > 0.45 && Math.abs(deltaY) > 25;
-      const isPastThreshold = Math.abs(deltaY) > 42;
-
-      if ((isPastThreshold || isFlick) && deltaY < 0 && currentIndex < TOTAL - 1) {
-        nextCard();
-      } else if ((isPastThreshold || isFlick) && deltaY > 0 && currentIndex > 0) {
-        prevCard();
-      } else {
-        updateDeck(true, 0);
-      }
-      deltaY = 0;
-    });
-
-    /* ── Snappy Wheel / Trackpad Scroll ── */
-    let wheelAccumulator = 0;
-    let wheelCooldown = false;
-
-    window.addEventListener('wheel', (e) => {
-      if (wheelCooldown || isAnimating) return;
-      wheelAccumulator += e.deltaY;
-
-      if (Math.abs(wheelAccumulator) > 35) {
-        if (wheelAccumulator > 0) {
-          nextCard();
-        } else {
-          prevCard();
-        }
-        wheelAccumulator = 0;
-        wheelCooldown = true;
-        setTimeout(() => { wheelCooldown = false; }, 360);
-      }
-    }, { passive: true });
-
-    /* ── Keyboard Navigation ── */
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
-        e.preventDefault();
-        nextCard();
-      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-        e.preventDefault();
-        prevCard();
-      }
-    });
-
-    nextBtn.addEventListener('click', nextCard);
-    prevBtn.addEventListener('click', prevCard);
-
-    updateDeck(false, 0);
-
-
-    /* ═══════════════════════════════════════════════════
-       LIGHTWEIGHT SCRATCH ENGINE
-    ═══════════════════════════════════════════════════════ */
-    const canvas = document.getElementById('scratch-canvas');
-    const scratchBox = document.getElementById('scratch-box');
-    const scratchHint = document.getElementById('scratch-hint');
-    const revealedBadge = document.getElementById('revealed-badge');
-    const revealBtn = document.getElementById('reveal-btn');
-    let ctx = null;
-    let isScratching = false;
-    let isFullyRevealed = false;
-    let scratchPoints = 0;
-
-    function initScratchCanvas() {
-      if (!canvas || !scratchBox) return;
-      ctx = canvas.getContext('2d', { willReadFrequently: true });
-
-      const rect = scratchBox.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const width = rect.width || 300;
-      const height = rect.height || 310;
-
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      ctx.scale(dpr, dpr);
-
-      drawFoilCover(width, height);
-    }
-
-    function drawFoilCover(w, h) {
-      if (!ctx) return;
-      ctx.save();
-
-      // Metallic Rose-Gold Gradient
-      const grad = ctx.createLinearGradient(0, 0, w, h);
-      grad.addColorStop(0, '#e8a5b2');
-      grad.addColorStop(0.3, '#f7d3db');
-      grad.addColorStop(0.55, '#d4a373');
-      grad.addColorStop(0.8, '#f4c2cc');
-      grad.addColorStop(1, '#c77b8b');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, w, h);
-
-      // Subtle Stars
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
-      const sparkles = [
-        [w * 0.15, h * 0.15, 2], [w * 0.85, h * 0.18, 2.2],
-        [w * 0.2, h * 0.82, 2], [w * 0.8, h * 0.8, 2.2],
-        [w * 0.5, h * 0.14, 1.8], [w * 0.12, h * 0.5, 1.6],
-        [w * 0.88, h * 0.5, 1.8]
-      ];
-      sparkles.forEach(([x, y, r]) => {
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fill();
       });
+    }
+  }, { passive: true });
 
-      // Inner Border
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-      ctx.lineWidth = 1.5;
-      ctx.strokeRect(10, 10, w - 20, h - 20);
-
-      // Label Text
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-      ctx.font = '600 32px serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('🎁', w / 2, h * 0.38);
-
-      ctx.fillStyle = '#4a2533';
-      ctx.font = 'italic 500 19px "Cormorant Garamond", Georgia, serif';
-      ctx.fillText('A Surprise From The Heart', w / 2, h * 0.49);
-
-      ctx.fillStyle = '#6e3d4e';
-      ctx.font = '600 12.5px "DM Sans", sans-serif';
-      ctx.fillText('✨ Scratch here with your finger ✨', w / 2, h * 0.58);
-
-      ctx.restore();
+  deck.addEventListener('touchend', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
     }
 
-    function getScratchCoords(e) {
-      const rect = canvas.getBoundingClientRect();
-      let clientX, clientY;
-      if (e.touches && e.touches.length > 0) {
-        clientX = e.touches[0].clientX;
-        clientY = e.touches[0].clientY;
+    const elapsed = Date.now() - startTime;
+    const velocity = Math.abs(deltaY) / elapsed;
+    const isFlick = velocity > 0.45 && Math.abs(deltaY) > 25;
+    const isPastThreshold = Math.abs(deltaY) > 42;
+
+    if ((isPastThreshold || isFlick) && deltaY < 0 && currentIndex < TOTAL - 1) {
+      nextCard();
+    } else if ((isPastThreshold || isFlick) && deltaY > 0 && currentIndex > 0) {
+      prevCard();
+    } else {
+      updateDeck(true, 0);
+    }
+    deltaY = 0;
+  });
+
+  /* ── Snappy Wheel / Trackpad Scroll ── */
+  let wheelAccumulator = 0;
+  let wheelCooldown = false;
+
+  window.addEventListener('wheel', (e) => {
+    if (wheelCooldown || isAnimating) return;
+    wheelAccumulator += e.deltaY;
+
+    if (Math.abs(wheelAccumulator) > 35) {
+      if (wheelAccumulator > 0) {
+        nextCard();
       } else {
-        clientX = e.clientX;
-        clientY = e.clientY;
+        prevCard();
       }
-      return {
-        x: clientX - rect.left,
-        y: clientY - rect.top
-      };
+      wheelAccumulator = 0;
+      wheelCooldown = true;
+      setTimeout(() => { wheelCooldown = false; }, 360);
     }
+  }, { passive: true });
 
-    function scratch(x, y) {
-      if (!ctx || isFullyRevealed) return;
+  /* ── Keyboard Navigation ── */
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+      e.preventDefault();
+      nextCard();
+    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      e.preventDefault();
+      prevCard();
+    }
+  });
 
-      ctx.save();
-      ctx.globalCompositeOperation = 'destination-out';
+  nextBtn.addEventListener('click', nextCard);
+  prevBtn.addEventListener('click', prevCard);
+
+  updateDeck(false, 0);
+
+
+  /* ═══════════════════════════════════════════════════
+     LIGHTWEIGHT SCRATCH ENGINE
+  ═══════════════════════════════════════════════════════ */
+  const canvas = document.getElementById('scratch-canvas');
+  const scratchBox = document.getElementById('scratch-box');
+  const scratchHint = document.getElementById('scratch-hint');
+  const revealedBadge = document.getElementById('revealed-badge');
+  const revealBtn = document.getElementById('reveal-btn');
+  let ctx = null;
+  let isScratching = false;
+  let isFullyRevealed = false;
+  let scratchPoints = 0;
+
+  function initScratchCanvas() {
+    if (!canvas || !scratchBox) return;
+    ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+    const rect = scratchBox.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const width = rect.width || 300;
+    const height = rect.height || 310;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.scale(dpr, dpr);
+
+    drawFoilCover(width, height);
+  }
+
+  function drawFoilCover(w, h) {
+    if (!ctx) return;
+    ctx.save();
+
+    // Metallic Rose-Gold Gradient
+    const grad = ctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, '#e8a5b2');
+    grad.addColorStop(0.3, '#f7d3db');
+    grad.addColorStop(0.55, '#d4a373');
+    grad.addColorStop(0.8, '#f4c2cc');
+    grad.addColorStop(1, '#c77b8b');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    // Subtle Stars
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+    const sparkles = [
+      [w * 0.15, h * 0.15, 2], [w * 0.85, h * 0.18, 2.2],
+      [w * 0.2, h * 0.82, 2], [w * 0.8, h * 0.8, 2.2],
+      [w * 0.5, h * 0.14, 1.8], [w * 0.12, h * 0.5, 1.6],
+      [w * 0.88, h * 0.5, 1.8]
+    ];
+    sparkles.forEach(([x, y, r]) => {
       ctx.beginPath();
-      ctx.arc(x, y, 34, 0, Math.PI * 2);
+      ctx.arc(x, y, r, 0, Math.PI * 2);
       ctx.fill();
-      ctx.restore();
+    });
 
-      scratchPoints++;
-      if (scratchPoints % 10 === 0) {
-        checkScratchPercentage();
+    // Inner Border
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(10, 10, w - 20, h - 20);
+
+    // Label Text
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+    ctx.font = '600 28px serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('🎁', w / 2, h * 0.36);
+
+    ctx.fillStyle = '#4a2533';
+    ctx.font = 'italic 500 17px "Cormorant Garamond", Georgia, serif';
+    ctx.fillText('A Surprise From The Heart', w / 2, h * 0.48);
+
+    ctx.fillStyle = '#6e3d4e';
+    ctx.font = '600 12px "DM Sans", sans-serif';
+    ctx.fillText('✨ Scratch here with your finger ✨', w / 2, h * 0.57);
+
+    ctx.restore();
+  }
+
+  function getScratchCoords(e) {
+    const rect = canvas.getBoundingClientRect();
+    let clientX, clientY;
+    if (e.touches && e.touches.length > 0) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+    return {
+      x: clientX - rect.left,
+      y: clientY - rect.top
+    };
+  }
+
+  function scratch(x, y) {
+    if (!ctx || isFullyRevealed) return;
+
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(x, y, 28, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    scratchPoints++;
+    if (scratchPoints % 10 === 0) {
+      checkScratchPercentage();
+    }
+  }
+
+  function checkScratchPercentage() {
+    if (isFullyRevealed || !ctx) return;
+    try {
+      const w = canvas.width;
+      const h = canvas.height;
+      const imgData = ctx.getImageData(0, 0, w, h);
+      const data = imgData.data;
+      let cleared = 0;
+      const sampleStep = 16;
+      const totalSampled = data.length / sampleStep;
+
+      for (let i = 3; i < data.length; i += sampleStep) {
+        if (data[i] < 128) cleared++;
       }
-    }
 
-    function checkScratchPercentage() {
-      if (isFullyRevealed || !ctx) return;
-      try {
-        const w = canvas.width;
-        const h = canvas.height;
-        const imgData = ctx.getImageData(0, 0, w, h);
-        const data = imgData.data;
-        let cleared = 0;
-        const sampleStep = 16;
-        const totalSampled = data.length / sampleStep;
-
-        for (let i = 3; i < data.length; i += sampleStep) {
-          if (data[i] < 128) cleared++;
-        }
-
-        if ((cleared / totalSampled) * 100 > 35) {
-          revealAll();
-        }
-      } catch (err) { }
-    }
-
-    function revealAll() {
-      if (isFullyRevealed) return;
-      isFullyRevealed = true;
-      canvas.classList.add('fade-out');
-      scratchHint.style.display = 'none';
-      revealBtn.style.display = 'none';
-      revealedBadge.classList.add('show');
-      if (navigator.vibrate) {
-        navigator.vibrate([25, 40, 25]);
+      if ((cleared / totalSampled) * 100 > 35) {
+        revealAll();
       }
+    } catch (err) {}
+  }
+
+  function revealAll() {
+    if (isFullyRevealed) return;
+    isFullyRevealed = true;
+    canvas.classList.add('fade-out');
+    scratchHint.style.display = 'none';
+    revealBtn.style.display = 'none';
+    revealedBadge.classList.add('show');
+    if (navigator.vibrate) {
+      navigator.vibrate([25, 40, 25]);
     }
+  }
 
-    canvas.addEventListener('touchstart', (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      isScratching = true;
-      const { x, y } = getScratchCoords(e);
-      scratch(x, y);
-    }, { passive: false });
+  canvas.addEventListener('touchstart', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    isScratching = true;
+    const { x, y } = getScratchCoords(e);
+    scratch(x, y);
+  }, { passive: false });
 
-    canvas.addEventListener('touchmove', (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      if (!isScratching) return;
-      const { x, y } = getScratchCoords(e);
-      scratch(x, y);
-    }, { passive: false });
+  canvas.addEventListener('touchmove', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (!isScratching) return;
+    const { x, y } = getScratchCoords(e);
+    scratch(x, y);
+  }, { passive: false });
 
-    canvas.addEventListener('touchend', (e) => {
-      e.stopPropagation();
+  canvas.addEventListener('touchend', (e) => {
+    e.stopPropagation();
+    isScratching = false;
+    checkScratchPercentage();
+  });
+
+  canvas.addEventListener('mousedown', (e) => {
+    isScratching = true;
+    const { x, y } = getScratchCoords(e);
+    scratch(x, y);
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isScratching) return;
+    const { x, y } = getScratchCoords(e);
+    scratch(x, y);
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (isScratching) {
       isScratching = false;
       checkScratchPercentage();
-    });
+    }
+  });
 
-    canvas.addEventListener('mousedown', (e) => {
-      isScratching = true;
-      const { x, y } = getScratchCoords(e);
-      scratch(x, y);
-    });
+  revealBtn.addEventListener('click', revealAll);
 
-    window.addEventListener('mousemove', (e) => {
-      if (!isScratching) return;
-      const { x, y } = getScratchCoords(e);
-      scratch(x, y);
-    });
-
-    window.addEventListener('mouseup', () => {
-      if (isScratching) {
-        isScratching = false;
-        checkScratchPercentage();
-      }
-    });
-
-    revealBtn.addEventListener('click', revealAll);
-
-    window.addEventListener('load', () => {
-      setTimeout(initScratchCanvas, 120);
-    });
-    window.addEventListener('resize', () => {
-      if (!isFullyRevealed) {
-        setTimeout(initScratchCanvas, 100);
-      }
-    });
-  </script>
+  window.addEventListener('load', () => {
+    setTimeout(initScratchCanvas, 120);
+  });
+  window.addEventListener('resize', () => {
+    if (!isFullyRevealed) {
+      setTimeout(initScratchCanvas, 100);
+    }
+  });
+</script>
 
 </body>
-
 </html>

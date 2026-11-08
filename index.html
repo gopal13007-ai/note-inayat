@@ -290,15 +290,7 @@
       animation: hintPulse 2.5s 2s 3 forwards;
     }
 
-    /* ─── PETALS ─── */
-    .petal {
-      position: fixed;
-      pointer-events: none;
-      font-size: 18px;
-      opacity: 0;
-      z-index: 999;
-      animation: petalFall linear forwards;
-    }
+
 
     /* ─── KEYFRAMES ─── */
     @keyframes nameReveal {
@@ -320,10 +312,7 @@
       42%       { transform: scale(1.14); }
       56%       { transform: scale(1); }
     }
-    @keyframes petalFall {
-      0%   { opacity: 0.9; transform: translateY(0) rotate(0deg); }
-      100% { opacity: 0;   transform: translateY(100vh) rotate(540deg); }
-    }
+
     @keyframes hintPulse {
       0%   { opacity: 0; transform: translateX(-50%) translateY(4px); }
       20%  { opacity: 0.8; transform: translateX(-50%) translateY(0); }
@@ -498,8 +487,6 @@
   function allDots() { return [...dotsEl.querySelectorAll('.dot')]; }
 
   /* ─── Core render function ─── */
-  let lastIndex = -1;
-
   function render() {
     const vh       = window.innerHeight;
     const scrollTop = driver.scrollTop;
@@ -578,11 +565,7 @@
       d.className = 'dot' + (i === nearestIdx ? ' active' : '');
     });
 
-    /* ─── Petal burst on card change ─── */
-    if (curIdx !== lastIndex && curIdx > 0 && curIdx < TOTAL) {
-      spawnPetals(4);
-      lastIndex = curIdx;
-    }
+
   }
 
   /* ─── Scroll listener (passive for performance) ─── */
@@ -604,28 +587,7 @@
     }
   });
 
-  /* ─── Petals ─── */
-  const petalEmojis = ['🌸', '🌷', '🌺', '✿', '❀'];
 
-  function spawnPetals(count) {
-    for (let i = 0; i < count; i++) {
-      setTimeout(() => {
-        const p = document.createElement('div');
-        p.className = 'petal';
-        p.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
-        p.style.left = (5 + Math.random() * 90) + 'vw';
-        p.style.top  = '-32px';
-        const dur = 2.2 + Math.random() * 1.8;
-        p.style.animationDuration = dur + 's';
-        p.style.fontSize = (12 + Math.random() * 14) + 'px';
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), dur * 1000);
-      }, i * 100);
-    }
-  }
-
-  /* initial gentle petals after name animation settles */
-  setTimeout(() => spawnPetals(5), 2200);
 </script>
 </body>
 </html>

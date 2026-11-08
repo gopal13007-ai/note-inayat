@@ -280,7 +280,8 @@
       pointer-events: none;
     }
 
-    #scratch-canvas {
+    #scratch-canvas,
+    #scratch-canvas-2 {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -291,7 +292,8 @@
       transition: opacity 0.6s ease;
     }
 
-    #scratch-canvas.fade-out {
+    #scratch-canvas.fade-out,
+    #scratch-canvas-2.fade-out {
       opacity: 0;
       pointer-events: none;
     }
@@ -567,19 +569,28 @@
       </div>
     </div>
 
-    <!-- CARD 6: PHOTO 2 (Blessings & Joy) -->
+    <!-- CARD 6: PHOTO 2 (Blessings & Joy - with Scratch Reveal) -->
     <div class="card card-6" data-index="5">
       <div class="card-content">
-        <h2 class="card-title" style="margin-bottom: 4px;">Pure love & blessings 🕊️</h2>
-        <p class="tag-line" style="margin-bottom: 8px; font-size: 10.5px;">Every smile is a prayer for you</p>
+        <h2 class="card-title" style="margin-bottom: 2px; font-size: clamp(23px, 6.2vw, 28px);">Pure love & blessings 🕊️</h2>
+        <p class="tag-line" style="margin-bottom: 6px; font-size: 11px; letter-spacing: 2px;">Every smile is a wish for you</p>
 
-        <div class="photo-frame">
-          <img src="./photo2.jpg" alt="Children joyfully eating birthday cake" />
+        <!-- Scratch Box Container 2 -->
+        <div class="scratch-container" id="scratch-box-2">
+          <img src="./photo2.jpg" alt="Children joyfully eating birthday cake" class="scratch-img" />
+          <canvas id="scratch-canvas-2"></canvas>
         </div>
 
-        <div class="card-body" style="font-size: 14px; line-height: 1.65; max-width: 310px;">
-          <p>Look at these radiant, happy faces enjoying their cake. They don’t know you, but today you brought genuine joy to their world.</p>
-          <p style="margin-top: 6px;">May all the light and goodness you put into this world find its way back to you a hundredfold.</p>
+        <div class="scratch-hint-pill" id="scratch-hint-2">
+          <span>✨</span> Scratch with your finger to reveal
+        </div>
+        <div class="revealed-badge" id="revealed-badge-2">
+          📸 Captured on 1st October 2026, 12:38 PM
+        </div>
+        <button class="scratch-action-btn" id="reveal-btn-2">Tap to reveal completely</button>
+
+        <div class="card-body" style="font-size: 13.5px; line-height: 1.45; max-width: 310px; margin-top: 6px;">
+          <p>Every single cheer and radiant smile here is a blessing sent straight to you, Inayat.</p>
         </div>
       </div>
     </div>
@@ -764,7 +775,7 @@
 
   /* ── 60/120fps Touch Swipe with rAF ── */
   deck.addEventListener('touchstart', (e) => {
-    if (e.target.closest('#scratch-canvas')) return;
+    if (e.target.closest('canvas') || e.target.closest('.scratch-container')) return;
     if (isAnimating) return;
 
     isDragging = true;
@@ -850,200 +861,233 @@
 
 
   /* ═══════════════════════════════════════════════════
-     LIGHTWEIGHT SCRATCH ENGINE
-  ═══════════════════════════════════════════════════════ */
-  const canvas = document.getElementById('scratch-canvas');
-  const scratchBox = document.getElementById('scratch-box');
-  const scratchHint = document.getElementById('scratch-hint');
-  const revealedBadge = document.getElementById('revealed-badge');
-  const revealBtn = document.getElementById('reveal-btn');
-  let ctx = null;
-  let isScratching = false;
-  let isFullyRevealed = false;
-  let scratchPoints = 0;
+     DUAL SCRATCH REVEAL ENGINE (Card 5 & Card 6)
+  ═══════════════════════════════════════════════════ */
+  function setupScratchCard({
+    canvasId,
+    boxId,
+    hintId,
+    badgeId,
+    btnId,
+    emoji = '🎁',
+    title = 'A Surprise From The Heart',
+    sub = '✨ Scratch here with your finger ✨',
+    gradColors = ['#e8a5b2', '#f7d3db', '#d4a373', '#f4c2cc', '#c77b8b']
+  }) {
+    const canvas = document.getElementById(canvasId);
+    const box = document.getElementById(boxId);
+    const hint = document.getElementById(hintId);
+    const badge = document.getElementById(badgeId);
+    const btn = document.getElementById(btnId);
+    if (!canvas || !box) return { init: () => {} };
 
-  function initScratchCanvas() {
-    if (!canvas || !scratchBox) return;
-    ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    let isScratching = false;
+    let isFullyRevealed = false;
+    let scratchPoints = 0;
 
-    const rect = scratchBox.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const width = rect.width || 300;
-    const height = rect.height || 310;
+    function init() {
+      const rect = box.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const width = rect.width || 300;
+      const height = rect.height || 310;
 
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    ctx.scale(dpr, dpr);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
 
-    drawFoilCover(width, height);
-  }
+      drawFoil(width, height);
+    }
 
-  function drawFoilCover(w, h) {
-    if (!ctx) return;
-    ctx.save();
+    function drawFoil(w, h) {
+      ctx.save();
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, gradColors[0]);
+      grad.addColorStop(0.3, gradColors[1]);
+      grad.addColorStop(0.55, gradColors[2]);
+      grad.addColorStop(0.8, gradColors[3]);
+      grad.addColorStop(1, gradColors[4]);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
 
-    // Metallic Rose-Gold Gradient
-    const grad = ctx.createLinearGradient(0, 0, w, h);
-    grad.addColorStop(0, '#e8a5b2');
-    grad.addColorStop(0.3, '#f7d3db');
-    grad.addColorStop(0.55, '#d4a373');
-    grad.addColorStop(0.8, '#f4c2cc');
-    grad.addColorStop(1, '#c77b8b');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, w, h);
+      // Subtle Stars
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+      const sparkles = [
+        [w * 0.15, h * 0.15, 2], [w * 0.85, h * 0.18, 2.2],
+        [w * 0.2, h * 0.82, 2], [w * 0.8, h * 0.8, 2.2],
+        [w * 0.5, h * 0.14, 1.8], [w * 0.12, h * 0.5, 1.6],
+        [w * 0.88, h * 0.5, 1.8]
+      ];
+      sparkles.forEach(([x, y, r]) => {
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+      });
 
-    // Subtle Stars
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
-    const sparkles = [
-      [w * 0.15, h * 0.15, 2], [w * 0.85, h * 0.18, 2.2],
-      [w * 0.2, h * 0.82, 2], [w * 0.8, h * 0.8, 2.2],
-      [w * 0.5, h * 0.14, 1.8], [w * 0.12, h * 0.5, 1.6],
-      [w * 0.88, h * 0.5, 1.8]
-    ];
-    sparkles.forEach(([x, y, r]) => {
+      // Inner Border
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(10, 10, w - 20, h - 20);
+
+      // Label Text
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.font = '600 32px serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(emoji, w / 2, h * 0.38);
+
+      ctx.fillStyle = '#4a2533';
+      ctx.font = 'italic 500 19px "Cormorant Garamond", Georgia, serif';
+      ctx.fillText(title, w / 2, h * 0.49);
+
+      ctx.fillStyle = '#6e3d4e';
+      ctx.font = '600 12.5px "DM Sans", sans-serif';
+      ctx.fillText(sub, w / 2, h * 0.58);
+
+      ctx.restore();
+    }
+
+    function getCoords(e) {
+      const rect = canvas.getBoundingClientRect();
+      let clientX, clientY;
+      if (e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+      return { x: clientX - rect.left, y: clientY - rect.top };
+    }
+
+    function scratch(x, y) {
+      if (!ctx || isFullyRevealed) return;
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-out';
       ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.arc(x, y, 34, 0, Math.PI * 2);
       ctx.fill();
+      ctx.restore();
+
+      scratchPoints++;
+      if (scratchPoints % 10 === 0) {
+        checkPercent();
+      }
+    }
+
+    function checkPercent() {
+      if (isFullyRevealed || !ctx) return;
+      try {
+        const w = canvas.width;
+        const h = canvas.height;
+        const imgData = ctx.getImageData(0, 0, w, h);
+        const data = imgData.data;
+        let cleared = 0;
+        const sampleStep = 16;
+        const totalSampled = data.length / sampleStep;
+
+        for (let i = 3; i < data.length; i += sampleStep) {
+          if (data[i] < 128) cleared++;
+        }
+
+        if ((cleared / totalSampled) * 100 > 35) {
+          revealAll();
+        }
+      } catch (err) {}
+    }
+
+    function revealAll() {
+      if (isFullyRevealed) return;
+      isFullyRevealed = true;
+      canvas.classList.add('fade-out');
+      if (hint) hint.style.display = 'none';
+      if (btn) btn.style.display = 'none';
+      if (badge) badge.classList.add('show');
+      if (navigator.vibrate) {
+        navigator.vibrate([25, 40, 25]);
+      }
+    }
+
+    canvas.addEventListener('touchstart', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      isScratching = true;
+      const { x, y } = getCoords(e);
+      scratch(x, y);
+    }, { passive: false });
+
+    canvas.addEventListener('touchmove', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      if (!isScratching) return;
+      const { x, y } = getCoords(e);
+      scratch(x, y);
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', (e) => {
+      e.stopPropagation();
+      isScratching = false;
+      checkPercent();
     });
 
-    // Inner Border
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-    ctx.lineWidth = 1.5;
-    ctx.strokeRect(10, 10, w - 20, h - 20);
+    canvas.addEventListener('mousedown', (e) => {
+      isScratching = true;
+      const { x, y } = getCoords(e);
+      scratch(x, y);
+    });
 
-    // Label Text
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-    ctx.font = '600 28px serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('🎁', w / 2, h * 0.36);
+    window.addEventListener('mousemove', (e) => {
+      if (!isScratching) return;
+      const { x, y } = getCoords(e);
+      scratch(x, y);
+    });
 
-    ctx.fillStyle = '#4a2533';
-    ctx.font = 'italic 500 17px "Cormorant Garamond", Georgia, serif';
-    ctx.fillText('A Surprise From The Heart', w / 2, h * 0.48);
-
-    ctx.fillStyle = '#6e3d4e';
-    ctx.font = '600 12px "DM Sans", sans-serif';
-    ctx.fillText('✨ Scratch here with your finger ✨', w / 2, h * 0.57);
-
-    ctx.restore();
-  }
-
-  function getScratchCoords(e) {
-    const rect = canvas.getBoundingClientRect();
-    let clientX, clientY;
-    if (e.touches && e.touches.length > 0) {
-      clientX = e.touches[0].clientX;
-      clientY = e.touches[0].clientY;
-    } else {
-      clientX = e.clientX;
-      clientY = e.clientY;
-    }
-    return {
-      x: clientX - rect.left,
-      y: clientY - rect.top
-    };
-  }
-
-  function scratch(x, y) {
-    if (!ctx || isFullyRevealed) return;
-
-    ctx.save();
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.beginPath();
-    ctx.arc(x, y, 28, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
-
-    scratchPoints++;
-    if (scratchPoints % 10 === 0) {
-      checkScratchPercentage();
-    }
-  }
-
-  function checkScratchPercentage() {
-    if (isFullyRevealed || !ctx) return;
-    try {
-      const w = canvas.width;
-      const h = canvas.height;
-      const imgData = ctx.getImageData(0, 0, w, h);
-      const data = imgData.data;
-      let cleared = 0;
-      const sampleStep = 16;
-      const totalSampled = data.length / sampleStep;
-
-      for (let i = 3; i < data.length; i += sampleStep) {
-        if (data[i] < 128) cleared++;
+    window.addEventListener('mouseup', () => {
+      if (isScratching) {
+        isScratching = false;
+        checkPercent();
       }
+    });
 
-      if ((cleared / totalSampled) * 100 > 35) {
-        revealAll();
-      }
-    } catch (err) {}
+    if (btn) btn.addEventListener('click', revealAll);
+
+    return { init };
   }
 
-  function revealAll() {
-    if (isFullyRevealed) return;
-    isFullyRevealed = true;
-    canvas.classList.add('fade-out');
-    scratchHint.style.display = 'none';
-    revealBtn.style.display = 'none';
-    revealedBadge.classList.add('show');
-    if (navigator.vibrate) {
-      navigator.vibrate([25, 40, 25]);
-    }
-  }
-
-  canvas.addEventListener('touchstart', (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    isScratching = true;
-    const { x, y } = getScratchCoords(e);
-    scratch(x, y);
-  }, { passive: false });
-
-  canvas.addEventListener('touchmove', (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    if (!isScratching) return;
-    const { x, y } = getScratchCoords(e);
-    scratch(x, y);
-  }, { passive: false });
-
-  canvas.addEventListener('touchend', (e) => {
-    e.stopPropagation();
-    isScratching = false;
-    checkScratchPercentage();
+  // Initialize both scratch cards
+  const scratchCard1 = setupScratchCard({
+    canvasId: 'scratch-canvas',
+    boxId: 'scratch-box',
+    hintId: 'scratch-hint',
+    badgeId: 'revealed-badge',
+    btnId: 'reveal-btn',
+    emoji: '🎂',
+    title: 'A Surprise From The Heart',
+    sub: '✨ Scratch here with your finger ✨',
+    gradColors: ['#e8a5b2', '#f7d3db', '#d4a373', '#f4c2cc', '#c77b8b']
   });
 
-  canvas.addEventListener('mousedown', (e) => {
-    isScratching = true;
-    const { x, y } = getScratchCoords(e);
-    scratch(x, y);
+  const scratchCard2 = setupScratchCard({
+    canvasId: 'scratch-canvas-2',
+    boxId: 'scratch-box-2',
+    hintId: 'scratch-hint-2',
+    badgeId: 'revealed-badge-2',
+    btnId: 'reveal-btn-2',
+    emoji: '🕊️',
+    title: 'Pure Smiles & Blessings',
+    sub: '✨ Scratch here with your finger ✨',
+    gradColors: ['#f8bbd0', '#ffd8e4', '#e1bee7', '#fce4ec', '#c77b8b']
   });
-
-  window.addEventListener('mousemove', (e) => {
-    if (!isScratching) return;
-    const { x, y } = getScratchCoords(e);
-    scratch(x, y);
-  });
-
-  window.addEventListener('mouseup', () => {
-    if (isScratching) {
-      isScratching = false;
-      checkScratchPercentage();
-    }
-  });
-
-  revealBtn.addEventListener('click', revealAll);
 
   window.addEventListener('load', () => {
-    setTimeout(initScratchCanvas, 120);
+    setTimeout(() => {
+      scratchCard1.init();
+      scratchCard2.init();
+    }, 120);
   });
   window.addEventListener('resize', () => {
-    if (!isFullyRevealed) {
-      setTimeout(initScratchCanvas, 100);
-    }
+    scratchCard1.init();
+    scratchCard2.init();
   });
 </script>
 

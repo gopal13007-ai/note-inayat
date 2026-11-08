@@ -325,11 +325,17 @@
 
     .revealed-badge {
       display: none;
-      font-size: 12.5px;
-      color: #27672b;
-      font-weight: 600;
-      margin-top: 4px;
-      animation: popIn 0.3s ease;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--deep-mauve);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(179, 100, 117, 0.25);
+      padding: 5px 14px;
+      border-radius: 18px;
+      margin-top: 6px;
+      letter-spacing: 0.3px;
+      box-shadow: 0 2px 10px rgba(179, 100, 117, 0.08);
+      animation: popIn 0.35s ease;
     }
 
     .revealed-badge.show {
@@ -542,8 +548,8 @@
     <!-- CARD 5: THE SCRATCH CARD (Photo 1 - Cake & Kids) -->
     <div class="card card-5" data-index="4">
       <div class="card-content">
-        <h2 class="card-title" style="margin-bottom: 4px;">Their smiles for you 🎂</h2>
-        <p class="tag-line" style="margin-bottom: 6px; font-size: 10.5px;">A cake baked with your name</p>
+        <h2 class="card-title" style="margin-bottom: 2px; font-size: clamp(23px, 6.2vw, 28px);">Celebrating Inayat 🎂</h2>
+        <p class="tag-line" style="margin-bottom: 6px; font-size: 11px; letter-spacing: 2px;">A sweet celebration in your name</p>
 
         <!-- Scratch Box Container -->
         <div class="scratch-container" id="scratch-box">
@@ -555,7 +561,7 @@
           <span>✨</span> Scratch with your finger to reveal
         </div>
         <div class="revealed-badge" id="revealed-badge">
-          💖 Revealed! Look at that cake made for you!
+          📸 Captured on 1st October 2026, 12:22 PM
         </div>
         <button class="scratch-action-btn" id="reveal-btn">Tap to reveal completely</button>
       </div>

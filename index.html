@@ -475,6 +475,198 @@
       0% { opacity: 0; transform: scale(0.88); }
       100% { opacity: 1; transform: scale(1); }
     }
+
+    /* ─── GLITTER SPARKLES AESTHETIC ANIMATION ─── */
+    .glitter-sparkles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 28;
+    }
+
+    .sparkle {
+      position: absolute;
+      color: #e6a760;
+      opacity: 0;
+      animation: sparkleGlow 3.2s infinite ease-in-out;
+      text-shadow: 0 0 6px rgba(230, 167, 96, 0.5);
+      user-select: none;
+    }
+
+    .sp-1 { top: 10%; left: 14%; animation-delay: 0s; font-size: 18px; }
+    .sp-2 { top: 18%; right: 14%; animation-delay: 0.9s; font-size: 14px; color: #f48fb1; }
+    .sp-3 { top: 38%; left: 8%; animation-delay: 1.6s; font-size: 16px; }
+    .sp-4 { top: 62%; right: 10%; animation-delay: 2.3s; font-size: 15px; color: #f48fb1; }
+    .sp-5 { top: 78%; left: 16%; animation-delay: 0.6s; font-size: 19px; }
+    .sp-6 { top: 14%; right: 28%; animation-delay: 1.9s; font-size: 13px; }
+    .sp-7 { top: 82%; right: 20%; animation-delay: 1.2s; font-size: 15px; }
+
+    @keyframes sparkleGlow {
+      0%, 100% { opacity: 0.15; transform: scale(0.7) rotate(0deg); }
+      50% { opacity: 0.95; transform: scale(1.25) rotate(45deg); filter: drop-shadow(0 0 6px #ffd599); }
+    }
+
+    /* ─── ENVELOPE CARD STYLE OPENING (CARD 1) ─── */
+    .envelope-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(165deg, #fff5f7 0%, #fae2e8 48%, #f4dce7 100%);
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 25;
+      padding: 24px;
+      cursor: pointer;
+      transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    .envelope-overlay.opened {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(1.04);
+    }
+
+    .envelope-top-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--deep-mauve);
+      margin-bottom: 24px;
+      animation: heartPulse 2.4s infinite ease-in-out;
+    }
+
+    .envelope-box {
+      position: relative;
+      width: min(310px, 84vw);
+      height: min(200px, 26vh);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #fce5ec, #f5ccd7);
+      box-shadow:
+        0 18px 44px rgba(179, 100, 117, 0.28),
+        0 4px 14px rgba(179, 100, 117, 0.12),
+        inset 0 1px 1px rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      perspective: 900px;
+    }
+
+    .env-flap-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 110px;
+      transform-origin: top center;
+      transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 6;
+      filter: drop-shadow(0 4px 8px rgba(179, 100, 117, 0.18));
+      backface-visibility: visible;
+    }
+
+    .envelope-box.is-opening .env-flap-top {
+      transform: rotateX(180deg);
+    }
+
+    .env-svg-flap {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .env-svg-pocket {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      display: block;
+      filter: drop-shadow(0 -2px 6px rgba(179, 100, 117, 0.08));
+    }
+
+    .wax-seal {
+      position: absolute;
+      top: 96px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #b84c66, #7a2237);
+      box-shadow:
+        0 6px 18px rgba(122, 34, 55, 0.42),
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        inset 0 2px 3px rgba(255, 255, 255, 0.35);
+      z-index: 8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.35s ease;
+      cursor: pointer;
+    }
+
+    .envelope-box.is-opening .wax-seal {
+      transform: translate(-50%, -50%) scale(1.3);
+      opacity: 0;
+    }
+
+    .wax-seal-inner {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(245, 205, 150, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wax-seal-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #fff0f5;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .envelope-hint-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--rose);
+      color: var(--deep-mauve);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 7px 18px;
+      border-radius: 24px;
+      margin-top: 24px;
+      box-shadow: 0 4px 16px rgba(179, 100, 117, 0.16);
+      animation: heartPulse 2s infinite ease-in-out;
+    }
+
+    .env-replay-btn {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(179, 100, 117, 0.25);
+      border-radius: 14px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--deep-mauve);
+      cursor: pointer;
+      display: none;
+      z-index: 15;
+      transition: all 0.2s ease;
+    }
+    .env-replay-btn.show {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
   </style>
 </head>
 <body>
@@ -482,9 +674,22 @@
 <div id="app">
   <div id="deck">
 
-    <!-- CARD 1: Name Reveal & Intro -->
-    <div class="card card-1" data-index="0">
-      <div class="card-content">
+    <!-- CARD 1: Name Reveal & Envelope Opening -->
+    <div class="card card-1" data-index="0" id="card-1">
+      <!-- Ambient Glitter Sparkles -->
+      <div class="glitter-sparkles" aria-hidden="true">
+        <span class="sparkle sp-1">✦</span>
+        <span class="sparkle sp-2">✧</span>
+        <span class="sparkle sp-3">✦</span>
+        <span class="sparkle sp-4">✧</span>
+        <span class="sparkle sp-5">✦</span>
+        <span class="sparkle sp-6">✧</span>
+        <span class="sparkle sp-7">✦</span>
+      </div>
+
+      <button class="env-replay-btn" id="env-replay-btn" title="Re-fold envelope">💌 Envelope</button>
+
+      <div class="card-content" id="card-1-content">
         <p class="tag-line">Cheers to 30 years</p>
         <h1 class="hero-name" style="font-size: clamp(42px, 11vw, 54px); line-height: 1.08; margin-bottom: 6px;">
           Happy birthday<br/>Inayat
@@ -497,6 +702,35 @@
         <p class="card-quote" style="margin-top: 14px; font-size: 14px;">
           Swipe up to begin ↓
         </p>
+      </div>
+
+      <!-- Envelope Overlay -->
+      <div class="envelope-overlay" id="envelope-overlay">
+        <p class="envelope-top-label">A special delivery for Inayat 🌸</p>
+        <div class="envelope-box" id="envelope-box">
+          <div class="env-flap-top" id="env-flap-top">
+            <svg class="env-svg-flap" viewBox="0 0 310 110" preserveAspectRatio="none">
+              <polygon points="0,0 310,0 155,110" fill="#fce5ec" />
+              <line x1="0" y1="0" x2="155" y2="110" stroke="rgba(212, 163, 115, 0.45)" stroke-width="1.5" />
+              <line x1="310" y1="0" x2="155" y2="110" stroke="rgba(212, 163, 115, 0.45)" stroke-width="1.5" />
+            </svg>
+          </div>
+          <svg class="env-svg-pocket" viewBox="0 0 310 200" preserveAspectRatio="none">
+            <polygon points="0,0 155,100 0,200" fill="#f8d6df" opacity="0.95" />
+            <polygon points="310,0 155,100 310,200" fill="#f5ccd7" opacity="0.95" />
+            <polygon points="0,200 155,100 310,200" fill="#f0c2cf" />
+            <line x1="0" y1="200" x2="155" y2="100" stroke="rgba(212, 163, 115, 0.35)" stroke-width="1.5" />
+            <line x1="310" y1="200" x2="155" y2="100" stroke="rgba(212, 163, 115, 0.35)" stroke-width="1.5" />
+          </svg>
+          <div class="wax-seal" id="wax-seal">
+            <div class="wax-seal-inner">
+              <span class="wax-seal-num">30</span>
+            </div>
+          </div>
+        </div>
+        <div class="envelope-hint-pill" id="envelope-hint">
+          <span>✨</span> Tap envelope to open <span>✨</span>
+        </div>
       </div>
     </div>
 
@@ -775,7 +1009,7 @@
 
   /* ── 60/120fps Touch Swipe with rAF ── */
   deck.addEventListener('touchstart', (e) => {
-    if (e.target.closest('canvas') || e.target.closest('.scratch-container')) return;
+    if (e.target.closest('canvas') || e.target.closest('.scratch-container') || e.target.closest('.envelope-overlay:not(.opened)') || e.target.closest('#env-replay-btn')) return;
     if (isAnimating) return;
 
     isDragging = true;
@@ -858,6 +1092,40 @@
   prevBtn.addEventListener('click', prevCard);
 
   updateDeck(false, 0);
+
+  /* ── Envelope Open / Re-fold ── */
+  const envelopeOverlay = document.getElementById('envelope-overlay');
+  const envelopeBox = document.getElementById('envelope-box');
+  const envReplayBtn = document.getElementById('env-replay-btn');
+  let isEnvelopeOpened = false;
+
+  function openEnvelope() {
+    if (isEnvelopeOpened) return;
+    if (envelopeBox) envelopeBox.classList.add('is-opening');
+    if (navigator.vibrate) {
+      navigator.vibrate(30);
+    }
+    setTimeout(() => {
+      if (envelopeOverlay) envelopeOverlay.classList.add('opened');
+      if (envReplayBtn) envReplayBtn.classList.add('show');
+      isEnvelopeOpened = true;
+    }, 450);
+  }
+
+  function closeEnvelope(e) {
+    if (e) e.stopPropagation();
+    if (envelopeOverlay) envelopeOverlay.classList.remove('opened');
+    if (envelopeBox) envelopeBox.classList.remove('is-opening');
+    if (envReplayBtn) envReplayBtn.classList.remove('show');
+    isEnvelopeOpened = false;
+  }
+
+  if (envelopeOverlay) {
+    envelopeOverlay.addEventListener('click', openEnvelope);
+  }
+  if (envReplayBtn) {
+    envReplayBtn.addEventListener('click', closeEnvelope);
+  }
 
 
   /* ═══════════════════════════════════════════════════
